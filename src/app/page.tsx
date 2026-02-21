@@ -5,10 +5,13 @@ import Hero from "../components/sections/Hero";
 import TechStack from "../components/sections/TechStack";
 import ProjectsSection from "../components/sections/ProjectsSection";
 import ContactSection from "../components/sections/ContactSection";
+import ScrollToTop from "../components/ScrollToTop"
 
 export default function HomePage() {
   return (
-    <main className="relative min-h-screen bg-black text-white">
+    <main className="min-h-[200vh] bg-black text-white">
+
+    {/* <main className="relative min-h-screen bg-black text-white"> */}
       {/* Tailwind test — should appear at the very top */}
       <div className="p-10 text-6xl font-bold text-pink-500 bg-white">
         Tailwind is working
@@ -17,7 +20,7 @@ export default function HomePage() {
       <BackgroundFX />
       <Navbar />
 
-      <div className="relative mx-auto max-w-6xl px-4">
+      <div className="relative mx-auto max-w-6xl px-4 pt-10 md:pt-16">
         <Hero />
 
         <div className="mt-16 md:mt-24">
@@ -33,6 +36,8 @@ export default function HomePage() {
         </div>
 
         <Footer />
+
+        <ScrollToTop /> 
       </div>
     </main>
   );
