@@ -1,123 +1,170 @@
-import Image from "next/image";
-import { ArrowDownRight } from "lucide-react";
+"use client";
+
+import { ArrowRight } from "lucide-react";
 import Typewriter from "../Typewriter";
 
 export default function Hero() {
   return (
-    <section id="about" className="pt-12 md:pt-16">
-      <div className="grid gap-10 md:grid-cols-2 md:items-center">
-        {/* LEFT */}
-        <div>
-          <h1 className="text-4xl font-semibold tracking-tight md:text-6xl">
-            Hi, I&apos;m{" "}
-            <span className="text-white">Lino Kee</span>.
-          </h1>
+    <section id="about" className="relative overflow-hidden pb-16 pt-32 md:pt-40">
+      <div className="mx-auto max-w-6xl px-6 flex flex-col items-center text-center">
 
-          <p className="mt-4 text-lg text-white/70 md:text-xl">
-            I build{" "}
-            <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent font-semibold">
-              AI-driven software
-            </span>{" "}
-            that ships.
-          </p>
+        {/* Avatar with floating badges */}
+        <div className="animate-scale-in relative" style={{ animationDelay: "100ms", marginBottom: 64 }}>
 
-          {/* Accent line like Mohammed’s */}
-          <div className="mt-7 h-px w-full bg-gradient-to-r from-transparent via-purple-400/60 to-transparent" />
-
-          {/* About card */}
-          <div className="mt-7 rounded-2xl border border-white/10 bg-white/5 p-6 shadow-[0_20px_60px_rgba(0,0,0,0.35)] backdrop-blur">
-            <p className="text-white/80 leading-relaxed">
-              I&apos;m a{" "}
-              <span className="text-white">Management Engineering</span>{" "}
-              student who builds AI systems end-to-end — from data pipelines and
-              model prototypes to production backends and clean user experiences.
-              I&apos;ve worked across{" "}
-              <span className="text-white">computer vision</span>,{" "}
-              <span className="text-white">LLM/RAG</span>, and analytics, and I
-              love turning messy real-world problems into reliable products.
-              <br />
-              <br />
-              Recently, I&apos;ve been leading{" "}
-              <span className="text-white">FORTif.ai</span> at WAT.ai, combining
-              real-time hazard detection with voice-enabled, human-friendly
-              guidance for safer independent living.
-            </p>
-
-            <div className="mt-5 flex flex-wrap gap-2 text-xs">
-              <Pill>AI/ML</Pill>
-              <Pill>Software Engineering</Pill>
-              <Pill>Data Engineering</Pill>
-              <Pill>Computer Vision</Pill>
-              <Pill>RAG + LLMs</Pill>
-            </div>
+          {/* Circular avatar */}
+          <div style={{
+            width: 260,
+            height: 260,
+            borderRadius: "50%",
+            overflow: "hidden",
+            border: "2px solid rgba(255,255,255,0.1)",
+            boxShadow: "0 0 80px rgba(99,102,241,0.2), 0 0 160px rgba(99,102,241,0.07)",
+            margin: "0 auto",
+          }}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/me.jpg"
+              alt="Lino Kee"
+              style={{ width: "100%", height: "100%", objectFit: "cover" }}
+            />
           </div>
 
-          {/* Buttons */}
-          <div className="mt-6 flex flex-wrap gap-3">
+          {/* Floating badge — upper right: </> */}
+          <div style={{
+            position: "absolute",
+            top: 18,
+            right: -20,
+            background: "#111827",
+            border: "1px solid rgba(255,255,255,0.12)",
+            borderRadius: 10,
+            padding: "7px 12px",
+            fontSize: 13,
+            fontWeight: 700,
+            color: "rgba(255,255,255,0.85)",
+            fontFamily: "monospace",
+            boxShadow: "0 4px 16px rgba(0,0,0,0.5)",
+            userSelect: "none",
+          }}>
+            &lt;/&gt;
+          </div>
+
+          {/* Floating badge — lower left: circuit icon */}
+          <div style={{
+            position: "absolute",
+            bottom: 28,
+            left: -20,
+            background: "#111827",
+            border: "1px solid rgba(255,255,255,0.12)",
+            borderRadius: 10,
+            padding: "8px 10px",
+            boxShadow: "0 4px 16px rgba(0,0,0,0.5)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            userSelect: "none",
+          }}>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10b981" strokeWidth={1.6} strokeLinecap="round" strokeLinejoin="round">
+              <rect x="7" y="7" width="10" height="10" rx="1" />
+              <path d="M3 9h4M3 15h4M17 9h4M17 15h4M9 3v4M15 3v4M9 17v4M15 17v4" />
+            </svg>
+          </div>
+
+          {/* Status pills — centered below avatar */}
+          <div style={{
+            position: "absolute",
+            bottom: -44,
+            left: "50%",
+            transform: "translateX(-50%)",
+            display: "flex",
+            gap: 8,
+            whiteSpace: "nowrap",
+          }}>
+            <div style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 6,
+              background: "rgba(16,185,129,0.08)",
+              border: "1px solid rgba(16,185,129,0.25)",
+              borderRadius: 999,
+              padding: "4px 10px",
+              fontSize: 10.5,
+              fontWeight: 500,
+              color: "rgba(16,185,129,0.9)",
+            }}>
+              <span style={{ width: 5, height: 5, borderRadius: "50%", background: "#10b981", display: "inline-block", flexShrink: 0 }} />
+              Seeking Fall 2026 Internships
+            </div>
+            <div style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 6,
+              background: "rgba(99,102,241,0.08)",
+              border: "1px solid rgba(99,102,241,0.25)",
+              borderRadius: 999,
+              padding: "4px 10px",
+              fontSize: 10.5,
+              fontWeight: 500,
+              color: "rgba(147,197,253,0.9)",
+            }}>
+              <span style={{ width: 5, height: 5, borderRadius: "50%", background: "#6366f1", display: "inline-block", flexShrink: 0 }} />
+              Available for 2027 New Grad Opportunities
+            </div>
+          </div>
+        </div>
+
+        {/* Text content */}
+        <div className="flex flex-col items-center">
+
+          {/* Main headline */}
+          <h1
+            style={{ fontFamily: "var(--font-cormorant)", animationDelay: "250ms" }}
+            className="animate-blur-in text-[clamp(3rem,7vw,5.5rem)] font-semibold italic leading-[1.05] tracking-tight text-center"
+          >
+            I build{" "}
+            <span className="gradient-text">
+              <Typewriter
+                words={["AI-powered", "intelligent", "data-driven", "full-stack"]}
+                typingMs={60}
+                deletingMs={35}
+                pauseMs={1200}
+              />
+            </span>
+            <br />
+            software that ships.
+          </h1>
+
+          {/* Subtitle */}
+          <p
+            className="animate-slide-up mt-6 max-w-[48ch] text-[15px] leading-[1.7] text-white/50 text-center"
+            style={{ animationDelay: "450ms" }}
+          >
+            Management Engineering at Waterloo. End-to-end: ML pipelines, computer
+            vision, production backends, clean frontends. Currently leading{" "}
+            <span className="font-medium text-white/80">FORTif.ai</span> at WAT.ai.
+          </p>
+
+          {/* CTAs */}
+          <div
+            className="animate-slide-up mt-8 flex flex-wrap items-center justify-center gap-3"
+            style={{ animationDelay: "600ms" }}
+          >
             <a
               href="#projects"
-              className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-5 py-3 text-sm font-semibold text-white hover:bg-white/15 transition"
+              className="group inline-flex items-center gap-2 rounded-full bg-indigo-500 px-6 py-3 text-[13px] font-semibold text-white transition-all hover:bg-indigo-400 hover:shadow-[0_0_32px_rgba(99,102,241,0.5)] hover:scale-105"
             >
-              View Projects <ArrowDownRight className="h-4 w-4" />
+              View Projects
+              <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
             </a>
             <a
               href="#contact"
-              className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-5 py-3 text-sm text-white/80 hover:bg-white/10 hover:text-white transition"
+              className="inline-flex items-center rounded-full border border-white/[0.15] px-6 py-3 text-[13px] font-medium text-white/70 transition-all hover:border-white/30 hover:bg-white/[0.05] hover:text-white"
             >
-              Let&apos;s Connect
+              Contact Me
             </a>
           </div>
         </div>
 
-        {/* RIGHT */}
-        <div className="mx-auto w-full max-w-md">
-          <div className="rounded-2xl border border-white/10 bg-white/5 p-3 shadow-[0_20px_60px_rgba(0,0,0,0.35)] backdrop-blur">
-            {/* IMPORTANT: this won’t look good until you add /public/me.jpg */}
-            <div className="relative aspect-[4/5] w-full overflow-hidden rounded-xl border border-white/10">
-              <Image
-                src="/me.jpg"
-                alt="Lino Kee"
-                fill
-                className="object-cover"
-                priority
-              />
-            </div>
-
-            <div className="mt-3 rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-sm text-white/70">
-              Waterloo, ON • Management Engineering • AI/ML + SWE
-            </div>
-          </div>
-
-          {/* subtle glow behind card */}
-          <div
-            aria-hidden
-            className="pointer-events-none -z-10 mx-auto mt-[-18rem] h-72 w-72 rounded-full bg-purple-500/10 blur-3xl"
-          />
-        </div>
       </div>
-
-      <p className="mt-4 text-xl text-white/70 md:text-2xl">
-        I&apos;m a{" "} 
-        <Typewriter
-          words={[
-            "tech enthusiast",
-            "builder",
-            "AI/ML engineer",
-            "software engineer",
-            "data nerd"
-          ]}
-
-        />
-      </p>
     </section>
   );
 }
-
-function Pill({ children }: { children: React.ReactNode }) {
-  return (
-    <span className="rounded-full border border-white/10 bg-black/30 px-3 py-1 text-white/80">
-      {children}
-    </span>
-  );
-}
-

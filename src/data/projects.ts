@@ -1,4 +1,4 @@
-export type ProjectCategory = 
+export type ProjectCategory =
 | "AI & ML"
 | "Web Development"
 | "Data"
@@ -16,13 +16,16 @@ export type Project = {
     tags: string[];
     tech: string[];
     links: { label: string; href: string }[];
+    featured?: boolean;
+    gradient?: string; // tailwind gradient for card background
 };
 
 export const projects: Project[] = [
   {
     title: "FORTif.ai",
+    featured: true,
     subtitle: "Platform for Safe & Independent Senior Living",
-    date: "Jan 2025 — Present",
+    date: "2025",
     description:
       "A centralized AI platform helping seniors age safely in place using real-time computer vision hazard detection and voice-enabled, adaptive nudges for seniors and caregivers.",
     highlights: [
@@ -40,12 +43,33 @@ export const projects: Project[] = [
       },
       { label: "Demo", href: "#" },
     ],
+    gradient: "from-emerald-900/40 to-teal-900/20",
+  },
+
+  {
+    title: "OptiTime AI",
+    subtitle: "AI Time Management System",
+    date: "2025",
+    description:
+      "Full-stack AI-powered time management recommendation system with intelligent scheduling and priority optimization.",
+    highlights: [
+      "Built with NestJS, React, Next.js, Redis, MongoDB, and BullMQ for scalable task processing.",
+      "Implements smart scheduling algorithms to optimize time allocation based on user patterns.",
+      "Features real-time recommendations and adaptive learning from user feedback.",
+    ],
+    categories: ["AI & ML", "Web Development"],
+    tags: ["Full-stack", "AI Recommendations", "Real-time"],
+    tech: ["NestJS", "React", "Next.js", "Redis", "MongoDB", "BullMQ", "TypeScript"],
+    links: [
+      { label: "GitHub", href: "#" },
+    ],
+    gradient: "from-violet-900/40 to-purple-900/20",
   },
 
   {
     title: "Car Recommender ML",
     subtitle: "Hybrid Recommendation System",
-    date: "Jun 2025 — Sep 2025",
+    date: "2025",
     description:
       "A lifestyle-based car recommendation app combining content-based similarity scoring with a supervised learning model and a feedback loop that improves recommendations over time.",
     highlights: [
@@ -61,14 +85,34 @@ export const projects: Project[] = [
         label: "GitHub",
         href: "https://github.com/d-lino-kee/Car-Recommendation-System",
       },
-      { label: "Demo", href: "#" },
     ],
+    gradient: "from-blue-900/40 to-cyan-900/20",
+  },
+
+  {
+    title: "Awaaz",
+    subtitle: "AI Voice-First Language Learning",
+    date: "2025",
+    description:
+      "AI-powered voice-first language learning tool built at the AI & Data Science for Good Hackathon, leveraging Google Speech APIs and translation for immersive learning.",
+    highlights: [
+      "Integrated Google Speech-to-Text, Text-to-Speech, and Translation APIs for real-time voice interaction.",
+      "Built responsive UI with React and Tailwind CSS for accessible mobile-first experience.",
+      "Designed for underserved language learners with voice-first interaction patterns.",
+    ],
+    categories: ["AI & ML", "Web Development"],
+    tags: ["Hackathon", "Voice AI", "Language Learning"],
+    tech: ["React", "Tailwind CSS", "Google Cloud APIs", "MySQL", "FastAPI"],
+    links: [
+      { label: "GitHub", href: "#" },
+    ],
+    gradient: "from-orange-900/40 to-amber-900/20",
   },
 
   {
     title: "Skill Swap Platform",
     subtitle: "Peer-to-Peer Learning Marketplace",
-    date: "Jan 2025 — Apr 2025",
+    date: "2025",
     description:
       "A full-stack platform for peer skill exchange with AI-assisted matching to help users learn without financial barriers.",
     highlights: [
@@ -81,14 +125,14 @@ export const projects: Project[] = [
     tech: ["React", "Node.js", "Express.js", "MySQL", "JavaScript"],
     links: [
       { label: "GitHub", href: "https://github.com/d-lino-kee/Skill-Swap-Platform" },
-      { label: "Demo", href: "#" },
     ],
+    gradient: "from-indigo-900/40 to-blue-900/20",
   },
 
   {
     title: "Court & Gridiron Outcome Lab",
     subtitle: "Sports Analytics Prediction Models",
-    date: "Jan 2025 — Apr 2025",
+    date: "2025",
     description:
       "ML pipelines to predict NBA and NFL game outcomes using player/team context features, EDA, and model selection.",
     highlights: [
@@ -105,29 +149,13 @@ export const projects: Project[] = [
         href: "https://github.com/d-lino-kee/Court-Gridiron-Outcome-Lab",
       },
     ],
-  },
-
-  {
-    title: "Optimal Distribution Networks (IP)",
-    subtitle: "Integer Programming Model",
-    date: "May 2024 — Aug 2024",
-    description:
-      "An integer programming model to minimize shipping costs across plants, distribution centers, and retail demand under capacity and operational constraints.",
-    highlights: [
-      "Modeled rail/truck shipping costs and DC operating expenses with constraint-based formulation.",
-      "Selected optimal DC locations from candidate cities using Excel Solver optimization.",
-      "Achieved up to a 45% cost reduction and validated results via sensitivity analysis.",
-    ],
-    categories: ["Optimization", "Data"],
-    tags: ["Cost Reduction", "Sensitivity Analysis"],
-    tech: ["Excel Solver", "Integer Programming"],
-    links: [{ label: "Write-up", href: "#" }],
+    gradient: "from-rose-900/40 to-pink-900/20",
   },
 
   {
     title: "Movie Review Application",
     subtitle: "Full-stack Reviews + Search",
-    date: "Jun 2024 — Aug 2024",
+    date: "2024",
     description:
       "A movie review app with search and review workflows, backed by a relational database and API-driven updates.",
     highlights: [
@@ -139,12 +167,13 @@ export const projects: Project[] = [
     tags: ["Full-stack", "UI/UX"],
     tech: ["React", "Node.js", "Express.js", "MySQL", "JSX"],
     links: [{ label: "GitHub", href: "#" }],
+    gradient: "from-sky-900/40 to-blue-900/20",
   },
 
   {
     title: "ERP & HR Process Automation",
     subtitle: "Power Automate + Dynamics 365",
-    date: "Jan 2024 — Apr 2024",
+    date: "2024",
     description:
       "Automation work to streamline ERP/HR workflows and reduce manual administrative effort across business systems.",
     highlights: [
@@ -156,90 +185,24 @@ export const projects: Project[] = [
     tags: ["Power Platform", "Workflow Automation"],
     tech: ["Power Automate", "Dynamics 365", "Power BI"],
     links: [{ label: "Summary", href: "#" }],
+    gradient: "from-amber-900/40 to-yellow-900/20",
   },
 
   {
-    title: "ProdFrost Launch Strategy",
-    subtitle: "Product Strategy (ProdCon 2023)",
-    date: "Nov 2023",
+    title: "Optimal Distribution Networks",
+    subtitle: "Integer Programming Model",
+    date: "2024",
     description:
-      "A product launch strategy and pitch for modernizing kitchen appliances with emerging technologies, grounded in customer research and KPI design.",
+      "An integer programming model to minimize shipping costs across plants, distribution centers, and retail demand under capacity and operational constraints.",
     highlights: [
-      "Defined customer segments and KPIs targeting +20% adoption and +30% brand recognition in year one.",
-      "Recommended partnerships and advertising initiatives backed by market research.",
-      "Delivered a 10-minute judged pitch covering constraints and ethical considerations.",
-    ],
-    categories: ["Product"],
-    tags: ["Strategy", "Pitch"],
-    tech: ["Market Research", "Product Analytics"],
-    links: [{ label: "Slides", href: "#" }],
-  },
-
-  {
-    title: "Work Systems Optimization (CRAFT)",
-    subtitle: "Layout + Flow Analysis",
-    date: "Feb 2023 — Apr 2023",
-    description:
-      "Operations analysis of high-traffic environments (food court + airport checkpoint) with layout optimization using CRAFT to reduce congestion and improve throughput.",
-    highlights: [
-      "Performed root-cause and traffic flow analysis to identify bottlenecks in high-traffic systems.",
-      "Applied CRAFT to propose improved facility layouts for better flow and efficiency.",
-      "Projected up to ~30% efficiency improvements through redesigned layouts and process changes.",
+      "Modeled rail/truck shipping costs and DC operating expenses with constraint-based formulation.",
+      "Selected optimal DC locations from candidate cities using Excel Solver optimization.",
+      "Achieved up to a 45% cost reduction and validated results via sensitivity analysis.",
     ],
     categories: ["Optimization", "Data"],
-    tags: ["Operations", "Root Cause"],
-    tech: ["Excel", "CRAFT"],
+    tags: ["Cost Reduction", "Sensitivity Analysis"],
+    tech: ["Excel Solver", "Integer Programming"],
     links: [{ label: "Write-up", href: "#" }],
-  },
-
-  {
-    title: "Student Financial Planning Tool",
-    subtitle: "VBA + Macros",
-    date: "Sep 2022 — Dec 2022",
-    description:
-      "A financial planning application for students with calculators, tracking, and chart-based insights to support better financial decisions.",
-    highlights: [
-      "Built calculators for cash flow, debt, and goals, plus a financial aid recorder with visual charts.",
-      "Translated inputs into color-coded dashboards to improve clarity and financial literacy.",
-      "Reported ~10% expense reduction from cohort feedback tied to improved awareness.",
-    ],
-    categories: ["Automation", "Product"],
-    tags: ["Dashboards", "Personal Finance"],
-    tech: ["VBA", "Excel", "Macros"],
-    links: [{ label: "Demo", href: "#" }],
-  },
-
-  {
-    title: "Time-Management Decision Support System",
-    subtitle: "VBA Scheduling Optimizer",
-    date: "Sep 2022 — Dec 2022",
-    description:
-      "A time allocation system that helps students prioritize tasks by type, difficulty, and urgency, then calculates optimized time distribution with dynamic charts.",
-    highlights: [
-      "Created a form-based UI and a scoring formula to compute optimal time allocation across activities.",
-      "Designed dynamic graphs/charts to visualize time distribution and priorities.",
-      "Supported execution with documentation, test specs, and analysis artifacts.",
-    ],
-    categories: ["Automation", "Product"],
-    tags: ["Decision Support", "Visualization"],
-    tech: ["VBA", "Excel"],
-    links: [{ label: "Demo", href: "#" }],
-  },
-
-  {
-    title: "Nudge Theory Research Paper",
-    subtitle: "Behavioral Economics Research",
-    date: "Oct 2020 — Feb 2022",
-    description:
-      "A research project analyzing how nudge interventions can encourage healthier grocery-store choices, including social/economic implications and behavioral outcome analysis.",
-    highlights: [
-      "Evaluated behavioral outcomes using data visualization and analysis techniques.",
-      "Produced annotated bibliographies, status reports, and process documentation.",
-      "Presented findings clearly with emphasis on real-world impacts and tradeoffs.",
-    ],
-    categories: ["Data", "Product"],
-    tags: ["Research", "Behavior"],
-    tech: ["Technical Writing", "Data Visualization"],
-    links: [{ label: "Paper", href: "#" }],
+    gradient: "from-teal-900/40 to-emerald-900/20",
   },
 ];

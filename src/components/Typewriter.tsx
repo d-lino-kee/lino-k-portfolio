@@ -17,7 +17,7 @@ export default function TypeWriter({
     pauseMs = 900,
     className = "",
 }: Props) {
-    const = list = UseMemo(() => words.filter(Boolean), [words]);
+    const list = useMemo(() => words.filter(Boolean), [words]);
     const [i, setI] = useState(0);      // which word
     const [text, setText] = useState(""); // current substring
     const [deleting, setDeleting] = useState(false);
@@ -27,7 +27,7 @@ export default function TypeWriter({
 
         const word = list[i % list.length];
 
-        const tick = () {
+        const tick = () => {
             if (!deleting) {
                 const next = word.slice(0, text.length + 1);
                 setText(next)
@@ -53,7 +53,7 @@ export default function TypeWriter({
     return (
         <span className={className}>
             {text}
-            <span className = "m1-1 inline-block w-[0.6ch] animate-pulse text-white">
+            <span className="ml-1 inline-block w-[0.6ch] animate-pulse text-white">
                 |
             </span>
         </span>
