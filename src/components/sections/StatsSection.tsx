@@ -54,9 +54,9 @@ export default function StatsSection() {
                   display: "flex",
                   alignItems: "center",
                   gap: 20,
-                  borderRadius: 16,
-                  border: "1px solid rgba(255,255,255,0.1)",
-                  background: "#0d0d0d",
+                  borderRadius: "var(--card-radius)",
+                  border: "1px solid var(--surface-border)",
+                  background: "var(--surface)",
                   padding: "24px 28px",
                 }}
               >
@@ -78,10 +78,10 @@ export default function StatsSection() {
 
                 {/* Text */}
                 <div>
-                  <div style={{ fontSize: 36, fontWeight: 800, color: "#ffffff", lineHeight: 1 }}>
+                  <div style={{ fontSize: 36, fontWeight: 800, color: "var(--fg)", lineHeight: 1 }}>
                     {stat.value}
                   </div>
-                  <div style={{ marginTop: 6, fontSize: 14, color: "rgba(255,255,255,0.45)", display: "flex", alignItems: "center", gap: 6 }}>
+                  <div style={{ marginTop: 6, fontSize: 14, color: "var(--fg-muted)", display: "flex", alignItems: "center", gap: 6 }}>
                     <span style={{ width: 6, height: 6, borderRadius: "50%", background: stat.color, flexShrink: 0, display: "inline-block" }} />
                     {stat.label}
                   </div>

@@ -5,7 +5,7 @@ import Typewriter from "../Typewriter";
 
 export default function Hero() {
   return (
-    <section id="about" className="relative overflow-hidden pb-16 pt-32 md:pt-40">
+    <section id="about" className="relative overflow-hidden pb-16" style={{ paddingTop: 100 }}>
       <div className="mx-auto max-w-6xl px-6 flex flex-col items-center text-center">
 
         {/* Avatar with floating badges */}
@@ -13,8 +13,8 @@ export default function Hero() {
 
           {/* Circular avatar */}
           <div style={{
-            width: 260,
-            height: 260,
+            width: 320,
+            height: 320,
             borderRadius: "50%",
             overflow: "hidden",
             border: "2px solid rgba(255,255,255,0.1)",
@@ -135,30 +135,24 @@ export default function Hero() {
 
           {/* Subtitle */}
           <p
-            className="animate-slide-up mt-6 max-w-[48ch] text-[15px] leading-[1.7] text-white/50 text-center"
-            style={{ animationDelay: "450ms" }}
+            className="animate-slide-up mt-6 max-w-[48ch] text-[15px] leading-[1.7] text-center"
+            style={{ animationDelay: "450ms", color: "var(--fg-muted)" }}
           >
             Management Engineering at Waterloo. End-to-end: ML pipelines, computer
             vision, production backends, clean frontends. Currently leading{" "}
-            <span className="font-medium text-white/80">FORTif.ai</span> at WAT.ai.
+            <span className="font-medium" style={{ color: "var(--fg)" }}>FORTif.ai</span> at WAT.ai.
           </p>
 
           {/* CTAs */}
           <div
-            className="animate-slide-up mt-8 flex flex-wrap items-center justify-center gap-3"
-            style={{ animationDelay: "600ms" }}
+            className="animate-slide-up hero-ctas"
+            style={{ animationDelay: "600ms", marginTop: 32, display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "center", gap: 12 }}
           >
-            <a
-              href="#projects"
-              className="group inline-flex items-center gap-2 rounded-full bg-indigo-500 px-6 py-3 text-[13px] font-semibold text-white transition-all hover:bg-indigo-400 hover:shadow-[0_0_32px_rgba(99,102,241,0.5)] hover:scale-105"
-            >
-              View Projects
-              <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
+            <a href="#projects" className="hero-cta hero-cta--primary">
+              <span>View Projects</span>
+              <ArrowRight className="hero-cta__arrow" style={{ width: 16, height: 16 }} />
             </a>
-            <a
-              href="#contact"
-              className="inline-flex items-center rounded-full border border-white/[0.15] px-6 py-3 text-[13px] font-medium text-white/70 transition-all hover:border-white/30 hover:bg-white/[0.05] hover:text-white"
-            >
+            <a href="#contact" className="hero-cta hero-cta--secondary">
               Contact Me
             </a>
           </div>

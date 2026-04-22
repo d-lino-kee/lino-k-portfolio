@@ -2,18 +2,34 @@
 
 import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
 
-export type ThemeName = "dark" | "vscode" | "winter" | "summer" | "claude";
+export type ThemeName = "dark" | "vscode" | "winter" | "summer" | "light";
 
 type ThemeConfig = {
   label: string;
   icon: ReactNode;
-  accent: string;       // primary accent color (hex)
-  accentRgb: string;    // RGB values for rgba()
-  gradientFrom: string; // gradient-text start
+  accent: string;
+  accentRgb: string;
+  gradientFrom: string;
   gradientVia: string;
   gradientTo: string;
-  bgTint: string;       // subtle background tint
+  bg: string;            // page background
+  fg: string;            // primary text
+  fgMuted: string;       // secondary text
+  fgSubtle: string;      // tertiary text
+  surface: string;       // card background
+  surfaceBorder: string; // card border
+  surfaceSoft: string;   // softer surface
+  fontFamily: string;    // default UI font
+  cardRadius: string;    // default card radius
+  pillRadius: string;    // pill / button radius
+  bgTint: string;
 };
+
+const systemFont =
+  "var(--font-sans), ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif";
+
+const vscodeFont =
+  '"Cascadia Code", "Fira Code", "JetBrains Mono", Consolas, "Courier New", monospace';
 
 export const themes: Record<ThemeName, ThemeConfig> = {
   dark: {
@@ -24,6 +40,16 @@ export const themes: Record<ThemeName, ThemeConfig> = {
     gradientFrom: "#818cf8",
     gradientVia: "#a855f7",
     gradientTo: "#6366f1",
+    bg: "#000000",
+    fg: "#ffffff",
+    fgMuted: "rgba(255,255,255,0.6)",
+    fgSubtle: "rgba(255,255,255,0.35)",
+    surface: "#0d0d0d",
+    surfaceBorder: "rgba(255,255,255,0.15)",
+    surfaceSoft: "rgba(255,255,255,0.03)",
+    fontFamily: systemFont,
+    cardRadius: "16px",
+    pillRadius: "9999px",
     bgTint: "rgba(99,102,241,0.03)",
   },
   vscode: {
@@ -33,38 +59,78 @@ export const themes: Record<ThemeName, ThemeConfig> = {
     accentRgb: "0,122,204",
     gradientFrom: "#007acc",
     gradientVia: "#2bc4e8",
-    gradientTo: "#0098ff",
-    bgTint: "rgba(0,122,204,0.03)",
+    gradientTo: "#4fc1ff",
+    bg: "#1e1e1e",
+    fg: "#d4d4d4",
+    fgMuted: "#9cdcfe",
+    fgSubtle: "#808080",
+    surface: "#252526",
+    surfaceBorder: "#3c3c3c",
+    surfaceSoft: "#2d2d30",
+    fontFamily: vscodeFont,
+    cardRadius: "2px",
+    pillRadius: "2px",
+    bgTint: "rgba(0,122,204,0.04)",
   },
   winter: {
     label: "Winter",
     icon: <SnowflakeIcon />,
-    accent: "#93c5fd",
-    accentRgb: "147,197,253",
-    gradientFrom: "#93c5fd",
-    gradientVia: "#c4b5fd",
-    gradientTo: "#e0e7ff",
-    bgTint: "rgba(147,197,253,0.03)",
+    accent: "#2563eb",
+    accentRgb: "37,99,235",
+    gradientFrom: "#60a5fa",
+    gradientVia: "#93c5fd",
+    gradientTo: "#2563eb",
+    bg: "#ffffff",
+    fg: "#0a0a0a",
+    fgMuted: "rgba(10,10,10,0.65)",
+    fgSubtle: "rgba(10,10,10,0.4)",
+    surface: "#f8fafc",
+    surfaceBorder: "rgba(10,10,10,0.1)",
+    surfaceSoft: "rgba(10,10,10,0.03)",
+    fontFamily: systemFont,
+    cardRadius: "16px",
+    pillRadius: "9999px",
+    bgTint: "rgba(37,99,235,0.03)",
   },
   summer: {
     label: "Summer",
     icon: <SunIcon />,
-    accent: "#fbbf24",
-    accentRgb: "251,191,36",
-    gradientFrom: "#fbbf24",
-    gradientVia: "#f97316",
-    gradientTo: "#ef4444",
-    bgTint: "rgba(251,191,36,0.03)",
-  },
-  claude: {
-    label: "Claude",
-    icon: <ClaudeIcon />,
-    accent: "#d97706",
-    accentRgb: "217,119,6",
+    accent: "#b45309",
+    accentRgb: "180,83,9",
     gradientFrom: "#d97706",
-    gradientVia: "#dc6b35",
-    gradientTo: "#c2410c",
-    bgTint: "rgba(217,119,6,0.03)",
+    gradientVia: "#f59e0b",
+    gradientTo: "#b45309",
+    bg: "#f5ead3",
+    fg: "#1c1917",
+    fgMuted: "rgba(28,25,23,0.65)",
+    fgSubtle: "rgba(28,25,23,0.4)",
+    surface: "#fbf3df",
+    surfaceBorder: "rgba(28,25,23,0.12)",
+    surfaceSoft: "rgba(28,25,23,0.04)",
+    fontFamily: systemFont,
+    cardRadius: "16px",
+    pillRadius: "9999px",
+    bgTint: "rgba(180,83,9,0.04)",
+  },
+  light: {
+    label: "Light",
+    icon: <SunSmallIcon />,
+    accent: "#4f46e5",
+    accentRgb: "79,70,229",
+    gradientFrom: "#6366f1",
+    gradientVia: "#8b5cf6",
+    gradientTo: "#4f46e5",
+    bg: "#ffffff",
+    fg: "#0a0a0a",
+    fgMuted: "rgba(10,10,10,0.65)",
+    fgSubtle: "rgba(10,10,10,0.4)",
+    surface: "#f8f8f8",
+    surfaceBorder: "rgba(10,10,10,0.1)",
+    surfaceSoft: "rgba(10,10,10,0.03)",
+    fontFamily: systemFont,
+    cardRadius: "16px",
+    pillRadius: "9999px",
+    bgTint: "rgba(79,70,229,0.03)",
   },
 };
 
@@ -89,11 +155,22 @@ export default function ThemeProvider({ children }: { children: ReactNode }) {
     localStorage.setItem("portfolio-theme", theme);
     const t = themes[theme];
     const root = document.documentElement;
+    root.setAttribute("data-theme", theme);
     root.style.setProperty("--accent", t.accent);
     root.style.setProperty("--accent-rgb", t.accentRgb);
     root.style.setProperty("--gradient-from", t.gradientFrom);
     root.style.setProperty("--gradient-via", t.gradientVia);
     root.style.setProperty("--gradient-to", t.gradientTo);
+    root.style.setProperty("--bg", t.bg);
+    root.style.setProperty("--fg", t.fg);
+    root.style.setProperty("--fg-muted", t.fgMuted);
+    root.style.setProperty("--fg-subtle", t.fgSubtle);
+    root.style.setProperty("--surface", t.surface);
+    root.style.setProperty("--surface-border", t.surfaceBorder);
+    root.style.setProperty("--surface-soft", t.surfaceSoft);
+    root.style.setProperty("--font-family", t.fontFamily);
+    root.style.setProperty("--card-radius", t.cardRadius);
+    root.style.setProperty("--pill-radius", t.pillRadius);
     root.style.setProperty("--bg-tint", t.bgTint);
   }, [theme]);
 
@@ -139,10 +216,11 @@ function SunIcon() {
   );
 }
 
-function ClaudeIcon() {
+function SunSmallIcon() {
   return (
-    <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
-      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15.5v-3H8.5L13 7.5v3H15.5L11 17.5z" />
+    <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+      <circle cx="12" cy="12" r="4" />
+      <path strokeLinecap="round" d="M12 3v1.5M12 19.5V21M3 12h1.5M19.5 12H21M5.64 5.64l1.06 1.06M17.3 17.3l1.06 1.06M5.64 18.36l1.06-1.06M17.3 6.7l1.06-1.06" />
     </svg>
   );
 }

@@ -7,6 +7,7 @@ export type Experience = {
     bullets: string[];
     skills?: string[];
     logo?: string;
+    logoScale?: number;
 };
 
 export const experience: Experience[] = [
@@ -67,6 +68,31 @@ export const experience: Experience[] = [
       "OpenCV",
       "Docker",
       "GCP",
+      "Git",
+    ],
+  },
+  {
+    role: "Product Engineering Lead",
+    roleIcon: "🚀",
+    org: "UW CUBE",
+    date: "Dec 2025 — Present",
+    location: "Waterloo, ON",
+    logo: "/companies/uwcube.png",
+    logoScale: 1.4,
+    bullets: [
+      "Lead the end-to-end implementation of UW CUBE's first website, mentoring a team of <strong>7 software developers</strong> across front-end (React, Next.js), back-end (Node.js/Python), and database (MySQL) architecture while maintaining code quality and cohesive product direction.",
+      "Architect an AI-powered student-role matching system using ranking algorithms, NLP, and LLMs to interpret student goals, parse resume experience, and surface the most relevant opportunities.",
+      "Build an AI Q&A chatbot to guide first-time users through the platform, reducing onboarding friction and making the incubator accessible to students with no prior experience navigating such tools.",
+    ],
+    skills: [
+      "React",
+      "Next.js",
+      "Node.js",
+      "Python",
+      "MySQL",
+      "NLP",
+      "LLMs",
+      "UI/UX",
       "Git",
     ],
   },

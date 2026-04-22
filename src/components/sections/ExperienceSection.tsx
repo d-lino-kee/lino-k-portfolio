@@ -37,13 +37,16 @@ function CompanyLogo({ exp }: { exp: Experience }) {
     );
   }
 
+  const scale = exp.logoScale ?? 1;
+  const size = `${scale * 100}%`;
+
   return (
     // eslint-disable-next-line @next/next/no-img-element
     <img
       src={exp.logo}
       alt={exp.org}
       onError={() => setFailed(true)}
-      style={{ width: "100%", height: "100%", objectFit: "cover" }}
+      style={{ width: size, height: size, objectFit: "cover" }}
     />
   );
 }
@@ -51,7 +54,7 @@ function CompanyLogo({ exp }: { exp: Experience }) {
 export default function ExperienceSection() {
   return (
     <section id="experience" className="relative overflow-hidden py-20 md:py-28">
-      <div className="mx-auto max-w-[950px] px-6">
+      <div style={{ maxWidth: 1440, margin: "0 auto", padding: "0 32px" }}>
 
         {/* Header */}
         <FadeIn>
@@ -69,9 +72,9 @@ export default function ExperienceSection() {
             <FadeIn delay={i * 60}>
               <div
                 style={{
-                  borderRadius: "16px",
-                  border: "1px solid rgba(255,255,255,0.15)",
-                  background: "#0d0d0d",
+                  borderRadius: "var(--card-radius)",
+                  border: "1px solid var(--surface-border)",
+                  background: "var(--surface)",
                   padding: "28px 32px",
                 }}
               >
@@ -106,11 +109,11 @@ export default function ExperienceSection() {
                       const subtitle = parts[1];
                       return (
                         <div style={{ margin: 0 }}>
-                          <h3 style={{ fontSize: 18, fontWeight: 700, color: "#ffffff", lineHeight: 1.3, margin: 0 }}>
+                          <h3 style={{ fontSize: 18, fontWeight: 700, color: "var(--fg)", lineHeight: 1.3, margin: 0 }}>
                             {mainTitle}
                           </h3>
                           {subtitle && (
-                            <p style={{ fontSize: 14, fontWeight: 500, color: "rgba(255,255,255,0.5)", marginTop: 2 }}>
+                            <p style={{ fontSize: 14, fontWeight: 500, color: "var(--fg-muted)", marginTop: 2 }}>
                               {exp.roleIcon && <span style={{ marginRight: 6 }}>{exp.roleIcon}</span>}
                               {subtitle}
                             </p>
@@ -124,7 +127,7 @@ export default function ExperienceSection() {
                       marginTop: 6,
                       fontFamily: "monospace",
                       fontSize: 13,
-                      color: "rgba(255,255,255,0.35)",
+                      color: "var(--fg-subtle)",
                       letterSpacing: "0.04em",
                     }}>
                       {exp.date.replace("—", " - ")}
@@ -133,8 +136,8 @@ export default function ExperienceSection() {
                     {/* Bullets */}
                     <ul style={{ marginTop: 14, paddingLeft: 0, listStyle: "none", display: "flex", flexDirection: "column", gap: 8 }}>
                       {exp.bullets.map((bullet, bi) => (
-                        <li key={bi} style={{ display: "flex", gap: 8, fontSize: 14, lineHeight: 1.7, color: "rgba(255,255,255,0.55)" }}>
-                          <span style={{ marginTop: 2, flexShrink: 0, color: "rgba(255,255,255,0.25)" }}>•</span>
+                        <li key={bi} style={{ display: "flex", gap: 8, fontSize: 14, lineHeight: 1.7, color: "var(--fg-muted)" }}>
+                          <span style={{ marginTop: 2, flexShrink: 0, color: "var(--fg-subtle)" }}>•</span>
                           <span className="exp-bullet" dangerouslySetInnerHTML={{ __html: bullet }} />
                         </li>
                       ))}

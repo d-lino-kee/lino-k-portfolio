@@ -6,11 +6,12 @@ import { useTheme, themes, type ThemeName } from "./ThemeProvider";
 const navLinks = [
   { label: "about", href: "#about" },
   { label: "skills", href: "#tech" },
-  { label: "experiences", href: "#experience" },
   { label: "projects", href: "#projects" },
+  { label: "experiences", href: "#experience" },
+  { label: "contact me", href: "#contact" },
 ];
 
-const themeOrder: ThemeName[] = ["dark", "vscode", "winter", "summer", "claude"];
+const themeOrder: ThemeName[] = ["dark", "vscode", "winter", "summer", "light"];
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -50,40 +51,19 @@ export default function Navbar() {
           display: "flex",
           alignItems: "center",
           gap: 4,
-          borderRadius: 9999,
-          border: "1px solid rgba(255,255,255,0.08)",
-          background: "rgba(13,13,18,0.92)",
+          borderRadius: "var(--pill-radius)",
+          border: "1px solid var(--surface-border)",
+          background: "color-mix(in srgb, var(--surface) 92%, transparent)",
           backdropFilter: "blur(20px)",
           WebkitBackdropFilter: "blur(20px)",
           padding: "8px 12px",
           boxShadow: scrolled ? "0 4px 30px rgba(0,0,0,0.5)" : "none",
-          transition: "box-shadow 0.3s",
+          transition: "box-shadow 0.3s, background 0.35s ease, border-color 0.35s ease",
         }}
       >
         {/* Nav links */}
         {navLinks.map(({ label, href }) => (
-          <a
-            key={label}
-            href={href}
-            style={{
-              padding: "8px 16px",
-              borderRadius: 9999,
-              fontSize: 13,
-              fontWeight: 500,
-              color: "rgba(255,255,255,0.6)",
-              whiteSpace: "nowrap",
-              transition: "all 0.2s",
-              textDecoration: "none",
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.background = "rgba(255,255,255,0.06)";
-              e.currentTarget.style.color = "rgba(255,255,255,1)";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.background = "transparent";
-              e.currentTarget.style.color = "rgba(255,255,255,0.6)";
-            }}
-          >
+          <a key={label} href={href} className="nav-pill">
             {label}
           </a>
         ))}
@@ -93,7 +73,7 @@ export default function Navbar() {
           style={{
             width: 1,
             height: 20,
-            background: "rgba(255,255,255,0.12)",
+            background: "var(--surface-border)",
             margin: "0 4px",
             flexShrink: 0,
           }}
@@ -113,17 +93,17 @@ export default function Navbar() {
               borderRadius: 9999,
               border: "none",
               background: "transparent",
-              color: themeOpen ? "var(--accent)" : "rgba(255,255,255,0.5)",
+              color: themeOpen ? "var(--accent)" : "var(--fg-muted)",
               cursor: "pointer",
               transition: "all 0.2s",
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.background = "rgba(255,255,255,0.06)";
-              e.currentTarget.style.color = "rgba(255,255,255,1)";
+              e.currentTarget.style.background = "rgba(var(--accent-rgb),0.12)";
+              e.currentTarget.style.color = "var(--fg)";
             }}
             onMouseLeave={(e) => {
               e.currentTarget.style.background = "transparent";
-              e.currentTarget.style.color = themeOpen ? "var(--accent)" : "rgba(255,255,255,0.5)";
+              e.currentTarget.style.color = themeOpen ? "var(--accent)" : "var(--fg-muted)";
             }}
           >
             {themes[theme].icon}
@@ -137,11 +117,11 @@ export default function Navbar() {
                 top: 48,
                 minWidth: 160,
                 borderRadius: 12,
-                border: "1px solid rgba(255,255,255,0.1)",
-                background: "rgba(20,20,26,0.95)",
+                border: "1px solid var(--surface-border)",
+                background: "var(--surface)",
                 backdropFilter: "blur(20px)",
                 padding: 4,
-                boxShadow: "0 8px 40px rgba(0,0,0,0.6)",
+                boxShadow: "0 8px 40px rgba(0,0,0,0.4)",
               }}
             >
               {themeOrder.map((t) => (
@@ -158,21 +138,21 @@ export default function Navbar() {
                     padding: "10px 12px",
                     fontSize: 13,
                     fontWeight: 500,
-                    background: theme === t ? "rgba(255,255,255,0.08)" : "transparent",
-                    color: theme === t ? "#fff" : "rgba(255,255,255,0.5)",
+                    background: theme === t ? "rgba(var(--accent-rgb),0.12)" : "transparent",
+                    color: theme === t ? "var(--fg)" : "var(--fg-muted)",
                     cursor: "pointer",
                     transition: "all 0.15s",
                   }}
                   onMouseEnter={(e) => {
                     if (theme !== t) {
-                      e.currentTarget.style.background = "rgba(255,255,255,0.05)";
-                      e.currentTarget.style.color = "rgba(255,255,255,0.8)";
+                      e.currentTarget.style.background = "rgba(var(--accent-rgb),0.08)";
+                      e.currentTarget.style.color = "var(--fg)";
                     }
                   }}
                   onMouseLeave={(e) => {
                     if (theme !== t) {
                       e.currentTarget.style.background = "transparent";
-                      e.currentTarget.style.color = "rgba(255,255,255,0.5)";
+                      e.currentTarget.style.color = "var(--fg-muted)";
                     }
                   }}
                 >
@@ -203,17 +183,17 @@ export default function Navbar() {
             borderRadius: 9999,
             border: "none",
             background: "transparent",
-            color: "rgba(255,255,255,0.5)",
+            color: "var(--fg-muted)",
             cursor: "pointer",
             transition: "all 0.2s",
           }}
           onMouseEnter={(e) => {
-            e.currentTarget.style.background = "rgba(255,255,255,0.06)";
-            e.currentTarget.style.color = "rgba(255,255,255,1)";
+            e.currentTarget.style.background = "rgba(var(--accent-rgb),0.12)";
+            e.currentTarget.style.color = "var(--fg)";
           }}
           onMouseLeave={(e) => {
             e.currentTarget.style.background = "transparent";
-            e.currentTarget.style.color = "rgba(255,255,255,0.5)";
+            e.currentTarget.style.color = "var(--fg-muted)";
           }}
         >
           <svg style={{ width: 16, height: 16 }} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -235,17 +215,17 @@ export default function Navbar() {
             borderRadius: 9999,
             border: "none",
             background: "transparent",
-            color: "rgba(255,255,255,0.5)",
+            color: "var(--fg-muted)",
             cursor: "pointer",
             transition: "all 0.2s",
           }}
           onMouseEnter={(e) => {
-            e.currentTarget.style.background = "rgba(255,255,255,0.06)";
-            e.currentTarget.style.color = "rgba(255,255,255,1)";
+            e.currentTarget.style.background = "rgba(var(--accent-rgb),0.12)";
+            e.currentTarget.style.color = "var(--fg)";
           }}
           onMouseLeave={(e) => {
             e.currentTarget.style.background = "transparent";
-            e.currentTarget.style.color = "rgba(255,255,255,0.5)";
+            e.currentTarget.style.color = "var(--fg-muted)";
           }}
         >
           <svg style={{ width: 16, height: 16 }} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>

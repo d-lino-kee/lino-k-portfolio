@@ -38,8 +38,8 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="en" className={`scroll-smooth text-white bg-black ${playfair.variable}`}>
-            <body className={`${inter.className} bg-black text-white antialiased`}>
+        <html lang="en" className={`scroll-smooth ${playfair.variable}`}>
+            <body className={`${inter.className} antialiased`}>
                 <ThemeProvider>
                     {children}
                 </ThemeProvider>

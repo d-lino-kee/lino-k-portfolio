@@ -1,3 +1,5 @@
+"use client";
+
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Hero from "../components/sections/Hero";
@@ -8,14 +10,31 @@ import ProjectsSection from "../components/sections/ProjectsSection";
 import ContactSection from "../components/sections/ContactSection";
 import ScrollToTop from "../components/ScrollToTop";
 import BackgroundWave from "../components/BackgroundWave";
+import CursorSwirls from "../components/CursorSwirls";
+import Starfield from "../components/Starfield";
+import WinterSnow from "../components/WinterSnow";
+import { useTheme } from "../components/ThemeProvider";
 
 export default function HomePage() {
-  return (
-    <main className="min-h-screen bg-black text-white">
-      <BackgroundFX />
-      <BackgroundWave />
-      <Navbar />
+  const { theme } = useTheme();
+  const isDarkFamily = theme === "dark" || theme === "vscode";
 
+  return (
+    <>
+      {/* Background FX live OUTSIDE <main> so no descendant stacking context
+          (transform, filter, animation, etc.) can contain them. */}
+      {isDarkFamily && (
+        <>
+          <SpaceBackdrop />
+          <BackgroundFX />
+          <Starfield />
+          <CursorSwirls />
+          <BackgroundWave />
+        </>
+      )}
+      <WinterSnow />
+      <Navbar />
+      <main style={{ minHeight: "100vh", background: "transparent", color: "var(--fg)" }}>
       {/* Hero */}
       <Hero />
 
@@ -26,43 +45,53 @@ export default function HomePage() {
       <ProjectsSection />
 
       {/* Skills */}
-      <div className="mx-auto max-w-6xl px-6">
-        <TechStack />
-      </div>
+      <TechStack />
 
       {/* Experience */}
       <ExperienceSection />
 
       {/* Contact */}
-      <div className="mx-auto max-w-6xl px-6">
-        <ContactSection />
-      </div>
+      <ContactSection />
 
       <div className="mx-auto max-w-6xl px-6">
         <Footer />
       </div>
       <ScrollToTop />
-    </main>
+      </main>
+    </>
+  );
+}
+
+function SpaceBackdrop() {
+  return (
+    <div
+      aria-hidden
+      className="pointer-events-none fixed inset-0"
+      style={{
+        zIndex: -12,
+        background: [
+          "radial-gradient(ellipse 55% 40% at 18% 22%, rgba(99,102,241,0.25), transparent 70%)",
+          "radial-gradient(ellipse 45% 35% at 82% 58%, rgba(168,85,247,0.22), transparent 70%)",
+          "radial-gradient(ellipse 50% 40% at 55% 92%, rgba(59,130,246,0.18), transparent 70%)",
+          "radial-gradient(ellipse 35% 25% at 72% 12%, rgba(236,72,153,0.12), transparent 70%)",
+          "linear-gradient(180deg, #050416 0%, #030312 100%)",
+        ].join(","),
+      }}
+    />
   );
 }
 
 function BackgroundFX() {
   return (
-    <div aria-hidden className="pointer-events-none fixed inset-0 -z-10">
-      {/* Film grain */}
-      <svg className="absolute inset-0 h-full w-full opacity-[0.03]">
+    <div aria-hidden className="pointer-events-none fixed inset-0" style={{ zIndex: -11 }}>
+      {/* Film grain on top of the nebula */}
+      <svg className="absolute inset-0 h-full w-full opacity-[0.04]">
         <filter id="noise">
           <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch" />
           <feColorMatrix type="saturate" values="0" />
         </filter>
         <rect width="100%" height="100%" filter="url(#noise)" />
       </svg>
-      {/* Gradient orbs */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_15%_25%,rgba(99,102,241,0.15),transparent),radial-gradient(ellipse_55%_45%_at_80%_55%,rgba(168,85,247,0.12),transparent),radial-gradient(ellipse_40%_35%_at_50%_90%,rgba(99,102,241,0.1),transparent)]" />
-      {/* Dot grid */}
-      <div className="absolute inset-0 opacity-[0.12] [background-image:radial-gradient(rgba(255,255,255,0.8)_1px,transparent_1px)] [background-size:28px_28px]" />
-      {/* Vignette */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.55)_60%,rgba(0,0,0,0.95)_100%)]" />
     </div>
   );
 }

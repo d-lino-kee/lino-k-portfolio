@@ -2,17 +2,20 @@
 
 export default function Footer() {
   return (
-    <footer className="mt-16 border-t border-white/[0.07] py-10">
+    <footer
+      className="mt-16 py-10"
+      style={{ borderTop: "1px solid var(--surface-border)" }}
+    >
       <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-between">
-        <p className="text-sm text-white/40">
+        <p className="text-sm" style={{ color: "var(--fg-subtle)" }}>
           © {new Date().getFullYear()}{" "}
-          <span className="font-medium text-white/60">Lino Kee</span>
+          <span className="font-medium" style={{ color: "var(--fg-muted)" }}>Lino Kee</span>
         </p>
-        <p className="text-xs text-white/25">
+        <p className="text-xs" style={{ color: "var(--fg-subtle)" }}>
           Built with{" "}
-          <span className="text-white/40 transition hover:text-teal-300">Next.js</span>
+          <span style={{ color: "var(--fg-muted)" }}>Next.js</span>
           {" + "}
-          <span className="text-white/40 transition hover:text-teal-300">Tailwind</span>
+          <span style={{ color: "var(--fg-muted)" }}>Tailwind</span>
           {" · "}
           Designed with care
         </p>

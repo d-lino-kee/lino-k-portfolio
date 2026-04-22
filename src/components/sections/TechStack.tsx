@@ -18,6 +18,7 @@ const categoryAccent: Record<Category, string> = {
 export default function TechStack() {
   return (
     <section id="tech" style={{ position: "relative", overflow: "hidden", padding: "80px 0" }}>
+     <div style={{ maxWidth: 1440, margin: "0 auto", padding: "0 32px" }}>
 
       {/* Header */}
       <header style={{ textAlign: "center", marginBottom: 48 }}>
@@ -26,11 +27,11 @@ export default function TechStack() {
         </h2>
       </header>
 
-      {/* Category cards — 3-column on desktop like the reference */}
+      {/* Category cards — 2 rows of 3 */}
       <div
         style={{
           display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+          gridTemplateColumns: "repeat(3, 1fr)",
           gap: 24,
         }}
       >
@@ -42,9 +43,9 @@ export default function TechStack() {
             <FadeIn key={cat} delay={catIdx * 100}>
               <div
                 style={{
-                  borderRadius: 16,
-                  border: "1px solid rgba(255,255,255,0.08)",
-                  background: "rgba(255,255,255,0.02)",
+                  borderRadius: "var(--card-radius)",
+                  border: "1px solid var(--surface-border)",
+                  background: "var(--surface-soft)",
                   padding: 24,
                 }}
               >
@@ -81,6 +82,7 @@ export default function TechStack() {
           );
         })}
       </div>
+     </div>
     </section>
   );
 }
@@ -127,7 +129,7 @@ function SkillCard({ skill }: { skill: (typeof skills)[number] }) {
           textAlign: "center",
           fontSize: 11,
           fontWeight: 500,
-          color: "rgba(255,255,255,0.55)",
+          color: "var(--fg-muted)",
           lineHeight: 1.2,
         }}
       >

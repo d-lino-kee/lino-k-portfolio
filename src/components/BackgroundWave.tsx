@@ -90,13 +90,14 @@ export default function BackgroundWave() {
         }
       }
 
-      // vignette
+      // soft vignette — gentle edge falloff so the nebula stays visible
       const g = ctx.createRadialGradient(
         w * 0.5, h * 0.5, 0,
-        w * 0.5, h * 0.5, Math.max(w, h) * 0.55
+        w * 0.5, h * 0.5, Math.max(w, h) * 0.7
       );
       g.addColorStop(0, "rgba(0,0,0,0)");
-      g.addColorStop(1, "rgba(0,0,0,0.85)");
+      g.addColorStop(0.75, "rgba(0,0,0,0)");
+      g.addColorStop(1, "rgba(0,0,0,0.25)");
       ctx.fillStyle = g;
       ctx.fillRect(0, 0, w, h);
 
