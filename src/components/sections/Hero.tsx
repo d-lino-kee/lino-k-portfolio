@@ -5,8 +5,25 @@ import Typewriter from "../Typewriter";
 
 export default function Hero() {
   return (
-    <section id="about" className="relative overflow-hidden pb-16" style={{ paddingTop: 100 }}>
+    <section id="hero" className="relative overflow-hidden pb-16" style={{ paddingTop: 100 }}>
       <div className="mx-auto max-w-6xl px-6 flex flex-col items-center text-center">
+
+        {/* Greeting */}
+        <h2
+          className="animate-blur-in"
+          style={{
+            fontFamily: "var(--font-cormorant)",
+            fontStyle: "italic",
+            fontWeight: 600,
+            fontSize: "clamp(3rem, 6.5vw, 5rem)",
+            lineHeight: 1.1,
+            letterSpacing: "-0.01em",
+            marginBottom: 32,
+            animationDelay: "50ms",
+          }}
+        >
+          Hey I&apos;m <span className="gradient-text">Lino</span>
+        </h2>
 
         {/* Avatar with floating badges */}
         <div className="animate-scale-in relative" style={{ animationDelay: "100ms", marginBottom: 64 }}>
@@ -134,14 +151,26 @@ export default function Hero() {
           </h1>
 
           {/* Subtitle */}
-          <p
-            className="animate-slide-up mt-6 max-w-[48ch] text-[15px] leading-[1.7] text-center"
-            style={{ animationDelay: "450ms", color: "var(--fg-muted)" }}
+          <div
+            className="animate-slide-up mt-6 max-w-[60ch] text-[15px] leading-[1.75] text-left"
+            style={{ animationDelay: "450ms", color: "rgba(255,255,255,0.92)" }}
           >
-            Management Engineering at Waterloo. End-to-end: ML pipelines, computer
-            vision, production backends, clean frontends. Currently leading{" "}
-            <span className="font-medium" style={{ color: "var(--fg)" }}>FORTif.ai</span> at WAT.ai.
-          </p>
+            <p>
+              I&apos;m a 4th-year Management Engineering student at Waterloo, and
+              I build software that makes life a little easier for the people who
+              use it.
+            </p>
+            <p style={{ marginTop: 14 }}>
+              My main project right now is a platform helping seniors live
+              independently. Alongside that, I&apos;m tinkering with an AI time
+              management system, a car recommendation engine, a skill-swap app,
+              and a stride-sense tool for runners.
+            </p>
+            <p style={{ marginTop: 14 }}>
+              I care about finishing things. I enjoy taking projects from idea to
+              deployed, not just demoed.
+            </p>
+          </div>
 
           {/* CTAs */}
           <div

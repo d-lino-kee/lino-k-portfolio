@@ -75,6 +75,63 @@ a {
   text-decoration: none;
 }
 
+/* ── Experience timeline ───────────────────────────────── */
+.timeline-row {
+  --dot-color: #a855f7;
+}
+
+.timeline-line {
+  position: absolute;
+  top: 40px;          /* starts just below the dot */
+  bottom: -40px;      /* bridges into the next row's gap */
+  left: 50%;
+  width: 2px;
+  transform: translateX(-50%);
+  background: rgba(255, 255, 255, 0.12);
+  transition: background 0.4s ease, box-shadow 0.4s ease;
+  pointer-events: none;
+}
+
+.timeline-dot {
+  position: absolute;
+  top: 24px;          /* aligns near the top of the card */
+  left: 50%;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--dot-color);
+  transform: translateX(-50%);
+  box-shadow:
+    0 0 0 3px rgba(0, 0, 0, 0.6),
+    0 0 8px color-mix(in srgb, var(--dot-color) 55%, transparent);
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.35s ease;
+  z-index: 1;
+}
+
+/* Hover: light up this row's dot, line, and card border */
+.timeline-row:hover .timeline-dot {
+  transform: translateX(-50%) scale(1.4);
+  box-shadow:
+    0 0 0 3px rgba(0, 0, 0, 0.6),
+    0 0 16px var(--dot-color),
+    0 0 36px var(--dot-color),
+    0 0 72px color-mix(in srgb, var(--dot-color) 75%, transparent);
+}
+
+.timeline-row:hover .timeline-line {
+  background: var(--dot-color);
+  box-shadow:
+    0 0 14px var(--dot-color),
+    0 0 28px color-mix(in srgb, var(--dot-color) 70%, transparent);
+}
+
+.timeline-row:hover .timeline-card {
+  border-color: color-mix(in srgb, var(--dot-color) 75%, transparent) !important;
+  box-shadow:
+    0 0 24px color-mix(in srgb, var(--dot-color) 35%, transparent),
+    0 0 64px color-mix(in srgb, var(--dot-color) 20%, transparent);
+}
+
 /* ── Experience bullet bold quantities ─────────────────── */
 .exp-bullet strong {
   color: var(--fg);
@@ -92,21 +149,77 @@ body {
   background: var(--bg);
 }
 
+/* ── Navbar shell with animated gradient border ────────── */
+.navbar-shell {
+  position: relative;
+  isolation: isolate;
+}
+
+/* Hide horizontal scrollbar on the nav when it overflows */
+.navbar-shell::-webkit-scrollbar {
+  display: none;
+}
+
+/* Color-cycling border via ::before — cycles purple → green → orange → red */
+.navbar-shell::before {
+  content: "";
+  position: absolute;
+  inset: -1.5px;
+  border-radius: inherit;
+  padding: 1.5px;
+  background: #a855f7;
+  animation: nav-border-cycle 8s linear infinite;
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+          mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  pointer-events: none;
+  z-index: -1;
+}
+
+@keyframes nav-border-cycle {
+  0%   { background: #a855f7; box-shadow: 0 0 18px rgba(168, 85, 247, 0.55); }
+  25%  { background: #22c55e; box-shadow: 0 0 18px rgba(34, 197, 94, 0.55); }
+  50%  { background: #f97316; box-shadow: 0 0 18px rgba(249, 115, 22, 0.55); }
+  75%  { background: #ef4444; box-shadow: 0 0 18px rgba(239, 68, 68, 0.55); }
+  100% { background: #a855f7; box-shadow: 0 0 18px rgba(168, 85, 247, 0.55); }
+}
+
+/* Subtle inner highlight so the glass reads as "glass" */
+.navbar-shell::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.08) 0%,
+    rgba(255, 255, 255, 0) 45%
+  );
+  pointer-events: none;
+  z-index: -1;
+}
+
 /* ── Nav pill hover ────────────────────────────────────── */
 .nav-pill {
   position: relative;
   display: inline-block;
-  padding: 8px 16px;
+  padding: clamp(6px, 1.1vw, 10px) clamp(10px, 1.8vw, 20px);
   border-radius: var(--pill-radius);
-  font-size: 13px;
-  font-weight: 500;
-  color: rgba(255, 255, 255, 0.6);
+  font-size: clamp(11px, 1.3vw, 16px);
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.92);
   white-space: nowrap;
   text-decoration: none;
   overflow: hidden;
   transition: color 0.25s ease, transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
     box-shadow 0.25s ease;
   z-index: 0;
+  flex-shrink: 0;
 }
 
 .nav-pill::before {
@@ -446,4 +559,176 @@ a {
 
 .preserve-3d {
   transform-style: preserve-3d;
+}
+
+/* ── About page prose ─────────────────────────────────── */
+.about-prose {
+  color: var(--fg-muted);
+  font-size: 16px;
+  line-height: 1.8;
+  max-width: 68ch;
+}
+
+.about-prose p {
+  margin: 0 0 14px 0;
+}
+
+.about-prose p:last-child {
+  margin-bottom: 0;
+}
+
+.about-prose ul {
+  margin: 4px 0 14px 0;
+  padding-left: 22px;
+  list-style: disc;
+}
+
+.about-prose li {
+  margin: 6px 0;
+}
+
+.about-prose strong {
+  font-weight: 600;
+}
+
+/* ── About page photo marquee ─────────────────────────── */
+.photo-marquee {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--card-radius);
+  /* Soft fade on both edges so photos slide in/out cleanly */
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    #000 6%,
+    #000 94%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    #000 6%,
+    #000 94%,
+    transparent 100%
+  );
+}
+
+.photo-marquee-track {
+  display: flex;
+  gap: 16px;
+  width: max-content;
+  /* 10 items × (300px + 16px gap) = 3160px per loop */
+  animation: photo-marquee 50s linear infinite;
+}
+
+.photo-marquee:hover .photo-marquee-track {
+  animation-play-state: paused;
+}
+
+.photo-marquee-item {
+  width: 300px;
+  height: 230px;
+  flex-shrink: 0;
+  border-radius: 14px;
+  overflow: hidden;
+  background: var(--surface-soft);
+  border: 1px solid var(--surface-border);
+}
+
+.photo-marquee-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.photo-marquee-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--fg-subtle);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  background: linear-gradient(135deg, var(--surface-soft), var(--surface));
+}
+
+@keyframes photo-marquee {
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(calc(-316px * 10), 0, 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .photo-marquee-track { animation: none; }
+}
+
+/* ── Custom circular cursor ───────────────────────────── */
+@media (hover: hover) and (pointer: fine) {
+  body.has-custom-cursor,
+  body.has-custom-cursor * {
+    cursor: none !important;
+  }
+}
+
+.custom-cursor-dot,
+.custom-cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0;
+  will-change: transform, opacity, width, height;
+}
+
+.custom-cursor-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 0 6px rgba(255, 255, 255, 0.5);
+  transition: opacity 0.15s ease, width 0.18s ease, height 0.18s ease, background 0.18s ease;
+}
+
+.custom-cursor-ring {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255, 255, 255, 0.7);
+  background: transparent;
+  transition:
+    opacity 0.2s ease,
+    width 0.22s ease,
+    height 0.22s ease,
+    border-color 0.22s ease,
+    background 0.22s ease;
+}
+
+.custom-cursor-ring[data-hover="true"] {
+  width: 52px;
+  height: 52px;
+  border-color: rgba(var(--accent-rgb, 129, 140, 248), 0.9);
+  background: rgba(var(--accent-rgb, 129, 140, 248), 0.12);
+}
+
+.custom-cursor-dot[data-hover="true"] {
+  width: 10px;
+  height: 10px;
+  background: rgba(var(--accent-rgb, 129, 140, 248), 1);
+}
+
+/* Light-theme variants (dark cursor on bright bg) */
+html[data-theme="winter"] .custom-cursor-dot,
+html[data-theme="summer"] .custom-cursor-dot,
+html[data-theme="light"] .custom-cursor-dot {
+  background: rgba(10, 10, 10, 0.9);
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
+}
+
+html[data-theme="winter"] .custom-cursor-ring,
+html[data-theme="summer"] .custom-cursor-ring,
+html[data-theme="light"] .custom-cursor-ring {
+  border-color: rgba(10, 10, 10, 0.55);
 }

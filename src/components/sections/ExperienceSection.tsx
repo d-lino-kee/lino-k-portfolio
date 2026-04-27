@@ -65,17 +65,41 @@ export default function ExperienceSection() {
           </header>
         </FadeIn>
 
-        {/* Experience cards */}
+        {/* Experience cards with timeline rail */}
         <div>
-          {experience.map((exp, i) => (
-            <div key={`${exp.org}-${exp.date}`} style={{ marginBottom: i < experience.length - 1 ? "40px" : 0 }}>
+          {experience.map((exp, i) => {
+            const dotColors = ["#22c55e", "#a855f7", "#f97316", "#ec4899", "#3b82f6"];
+            const dotColor = dotColors[i % dotColors.length];
+            const isLast = i === experience.length - 1;
+            return (
+            <div
+              key={`${exp.org}-${exp.date}`}
+              className="timeline-row"
+              style={{
+                position: "relative",
+                display: "flex",
+                gap: 24,
+                marginBottom: isLast ? 0 : 40,
+                ["--dot-color" as string]: dotColor,
+              } as React.CSSProperties}
+            >
+              {/* Timeline rail (line + dot) */}
+              <div style={{ width: 28, flexShrink: 0, position: "relative" }}>
+                {!isLast && <div className="timeline-line" />}
+                <div className="timeline-dot" />
+              </div>
+
+              {/* Card column */}
+              <div style={{ flex: 1, minWidth: 0 }}>
             <FadeIn delay={i * 60}>
               <div
+                className="timeline-card"
                 style={{
                   borderRadius: "var(--card-radius)",
                   border: "1px solid var(--surface-border)",
                   background: "var(--surface)",
                   padding: "28px 32px",
+                  transition: "border-color 0.35s ease, box-shadow 0.35s ease",
                 }}
               >
                 <div className="flex items-start">
@@ -174,8 +198,10 @@ export default function ExperienceSection() {
                 </div>
               </div>
             </FadeIn>
+              </div>
             </div>
-          ))}
+            );
+          })}
         </div>
 
       </div>

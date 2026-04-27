@@ -121,7 +121,12 @@ export default function BackgroundWave() {
     <canvas
       ref={ref}
       aria-hidden
-      className="pointer-events-none fixed inset-0 -z-10"
+      style={{
+        position: "fixed",
+        inset: 0,
+        zIndex: -10,
+        pointerEvents: "none",
+      }}
     />
   );
 }

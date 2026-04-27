@@ -4,11 +4,11 @@ import { useEffect, useRef, useState } from "react";
 import { useTheme, themes, type ThemeName } from "./ThemeProvider";
 
 const navLinks = [
-  { label: "about", href: "#about" },
-  { label: "skills", href: "#tech" },
-  { label: "projects", href: "#projects" },
-  { label: "experiences", href: "#experience" },
-  { label: "contact me", href: "#contact" },
+  { label: "about", href: "/about" },
+  { label: "skills", href: "/#tech" },
+  { label: "projects", href: "/#projects" },
+  { label: "experiences", href: "/#experience" },
+  { label: "contact me", href: "/#contact" },
 ];
 
 const themeOrder: ThemeName[] = ["dark", "vscode", "winter", "summer", "light"];
@@ -44,21 +44,25 @@ export default function Navbar() {
         left: "50%",
         transform: "translateX(-50%)",
         zIndex: 50,
+        maxWidth: "calc(100vw - 24px)",
       }}
     >
       <nav
+        className="navbar-shell"
         style={{
           display: "flex",
           alignItems: "center",
-          gap: 4,
+          gap: "clamp(2px, 0.6vw, 5px)",
           borderRadius: "var(--pill-radius)",
-          border: "1px solid var(--surface-border)",
-          background: "color-mix(in srgb, var(--surface) 92%, transparent)",
-          backdropFilter: "blur(20px)",
-          WebkitBackdropFilter: "blur(20px)",
-          padding: "8px 12px",
-          boxShadow: scrolled ? "0 4px 30px rgba(0,0,0,0.5)" : "none",
-          transition: "box-shadow 0.3s, background 0.35s ease, border-color 0.35s ease",
+          background: "color-mix(in srgb, var(--surface) 80%, transparent)",
+          backdropFilter: "blur(24px) saturate(140%)",
+          WebkitBackdropFilter: "blur(24px) saturate(140%)",
+          padding: "clamp(6px, 1.2vw, 10px) clamp(8px, 1.8vw, 14px)",
+          maxWidth: "100%",
+          boxShadow: scrolled
+            ? "0 8px 32px rgba(0,0,0,0.55), 0 0 40px rgba(var(--accent-rgb),0.18)"
+            : "0 4px 20px rgba(0,0,0,0.35), 0 0 24px rgba(var(--accent-rgb),0.12)",
+          transition: "box-shadow 0.3s, background 0.35s ease",
         }}
       >
         {/* Nav links */}
@@ -72,9 +76,9 @@ export default function Navbar() {
         <div
           style={{
             width: 1,
-            height: 20,
+            height: 24,
             background: "var(--surface-border)",
-            margin: "0 4px",
+            margin: "0 6px",
             flexShrink: 0,
           }}
         />
@@ -88,8 +92,9 @@ export default function Navbar() {
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              width: 36,
-              height: 36,
+              width: "clamp(32px, 3.5vw, 44px)",
+              height: "clamp(32px, 3.5vw, 44px)",
+              flexShrink: 0,
               borderRadius: 9999,
               border: "none",
               background: "transparent",
@@ -178,8 +183,9 @@ export default function Navbar() {
             display: "flex",
             alignItems: "center",
             gap: 6,
-            height: 36,
-            padding: "0 10px",
+            height: "clamp(32px, 3.5vw, 44px)",
+            padding: "0 clamp(8px, 1.2vw, 14px)",
+            flexShrink: 0,
             borderRadius: 9999,
             border: "none",
             background: "transparent",
@@ -196,11 +202,11 @@ export default function Navbar() {
             e.currentTarget.style.color = "var(--fg-muted)";
           }}
         >
-          <svg style={{ width: 16, height: 16 }} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+          <svg style={{ width: 20, height: 20 }} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
             <circle cx="12" cy="12" r="10" />
             <path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z" />
           </svg>
-          <span style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.05em" }}>EN</span>
+          <span style={{ fontSize: 14, fontWeight: 600, letterSpacing: "0.05em" }}>EN</span>
         </button>
 
         {/* Weather icon */}
@@ -228,7 +234,7 @@ export default function Navbar() {
             e.currentTarget.style.color = "var(--fg-muted)";
           }}
         >
-          <svg style={{ width: 16, height: 16 }} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+          <svg style={{ width: 20, height: 20 }} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M3 15a4 4 0 004 4h9a5 5 0 10-4.584-7A4.002 4.002 0 003 15z" />
           </svg>
         </button>

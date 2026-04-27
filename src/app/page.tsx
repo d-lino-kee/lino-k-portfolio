@@ -13,6 +13,7 @@ import BackgroundWave from "../components/BackgroundWave";
 import CursorSwirls from "../components/CursorSwirls";
 import Starfield from "../components/Starfield";
 import WinterSnow from "../components/WinterSnow";
+import CustomCursor from "../components/CustomCursor";
 import { useTheme } from "../components/ThemeProvider";
 
 export default function HomePage() {
@@ -33,6 +34,7 @@ export default function HomePage() {
         </>
       )}
       <WinterSnow />
+      <CustomCursor />
       <Navbar />
       <main style={{ minHeight: "100vh", background: "transparent", color: "var(--fg)" }}>
       {/* Hero */}
@@ -66,9 +68,11 @@ function SpaceBackdrop() {
   return (
     <div
       aria-hidden
-      className="pointer-events-none fixed inset-0"
       style={{
+        position: "fixed",
+        inset: 0,
         zIndex: -12,
+        pointerEvents: "none",
         background: [
           "radial-gradient(ellipse 55% 40% at 18% 22%, rgba(99,102,241,0.25), transparent 70%)",
           "radial-gradient(ellipse 45% 35% at 82% 58%, rgba(168,85,247,0.22), transparent 70%)",
@@ -83,9 +87,25 @@ function SpaceBackdrop() {
 
 function BackgroundFX() {
   return (
-    <div aria-hidden className="pointer-events-none fixed inset-0" style={{ zIndex: -11 }}>
+    <div
+      aria-hidden
+      style={{
+        position: "fixed",
+        inset: 0,
+        zIndex: -11,
+        pointerEvents: "none",
+      }}
+    >
       {/* Film grain on top of the nebula */}
-      <svg className="absolute inset-0 h-full w-full opacity-[0.04]">
+      <svg
+        style={{
+          position: "absolute",
+          inset: 0,
+          width: "100%",
+          height: "100%",
+          opacity: 0.04,
+        }}
+      >
         <filter id="noise">
           <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch" />
           <feColorMatrix type="saturate" values="0" />

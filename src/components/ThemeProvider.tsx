@@ -185,7 +185,7 @@ export default function ThemeProvider({ children }: { children: ReactNode }) {
 
 function MoonIcon() {
   return (
-    <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+    <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
       <path strokeLinecap="round" strokeLinejoin="round" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" />
     </svg>
   );
@@ -193,7 +193,7 @@ function MoonIcon() {
 
 function VSCodeIcon() {
   return (
-    <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
+    <svg className="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
       <path d="M17.583 2.213l-4.87 4.456L7.89 2.905 2 5.32v13.36l5.89 2.415 4.823-3.764 4.87 4.456L22 19.571V4.429l-4.417-2.216zM7.89 15.27V8.73L12.713 12 7.89 15.27zm9.693 1.946l-4.89-4.486V11.27l4.89-4.486v10.432z" />
     </svg>
   );
@@ -201,7 +201,7 @@ function VSCodeIcon() {
 
 function SnowflakeIcon() {
   return (
-    <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+    <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
       <path strokeLinecap="round" strokeLinejoin="round" d="M12 2v20m0-20l4 4m-4-4l-4 4m4 16l4-4m-4 4l-4-4M2 12h20m-20 0l4-4m-4 4l4 4m16-4l-4-4m4 4l-4 4" />
     </svg>
   );
@@ -209,7 +209,7 @@ function SnowflakeIcon() {
 
 function SunIcon() {
   return (
-    <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+    <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
       <circle cx="12" cy="12" r="5" />
       <path strokeLinecap="round" d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72l1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
     </svg>
@@ -218,7 +218,7 @@ function SunIcon() {
 
 function SunSmallIcon() {
   return (
-    <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+    <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
       <circle cx="12" cy="12" r="4" />
       <path strokeLinecap="round" d="M12 3v1.5M12 19.5V21M3 12h1.5M19.5 12H21M5.64 5.64l1.06 1.06M17.3 17.3l1.06 1.06M5.64 18.36l1.06-1.06M17.3 6.7l1.06-1.06" />
     </svg>
