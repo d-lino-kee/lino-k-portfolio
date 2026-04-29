@@ -171,7 +171,7 @@ export const projects: Project[] = [
   },
 
   {
-    title: "ERP & HR Process Automation",
+    title: "ERP Process Automation",
     subtitle: "Power Automate + Dynamics 365",
     date: "2024",
     description:
