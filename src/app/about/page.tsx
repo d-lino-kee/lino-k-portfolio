@@ -498,7 +498,6 @@ function SpaceBackdrop() {
           "radial-gradient(ellipse 55% 40% at 18% 22%, rgba(99,102,241,0.25), transparent 70%)",
           "radial-gradient(ellipse 45% 35% at 82% 58%, rgba(168,85,247,0.22), transparent 70%)",
           "radial-gradient(ellipse 50% 40% at 55% 92%, rgba(59,130,246,0.18), transparent 70%)",
-          "radial-gradient(ellipse 50% 35% at 50% 15%, rgba(99,102,241,0.18), transparent 70%)",
           "radial-gradient(ellipse 35% 25% at 72% 12%, rgba(236,72,153,0.12), transparent 70%)",
           "linear-gradient(180deg, #050416 0%, #030312 100%)",
         ].join(","),
