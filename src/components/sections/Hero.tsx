@@ -5,7 +5,7 @@ import Typewriter from "../Typewriter";
 
 export default function Hero() {
   return (
-    <section id="hero" className="relative overflow-hidden pb-16" style={{ paddingTop: "110vh" }}>
+    <section id="hero" className="relative overflow-hidden pb-16" style={{ paddingTop: 100 }}>
       <div className="mx-auto max-w-6xl px-6 flex flex-col items-center text-center">
 
         {/* Greeting */}

@@ -29,6 +29,7 @@ html {
 html,
 body {
   height: 100%;
+  overscroll-behavior-y: none;
 }
 
 body {
@@ -43,7 +44,7 @@ body {
    so it shares the same stacking plane as the other FX canvases. */
 html[data-theme="dark"] body,
 html[data-theme="vscode"] body {
-  background: #020108;
+  background: #0a0820;
 }
 
 /* ── Scrollbar ─────────────────────────────────────────── */
