@@ -17,7 +17,7 @@ export default function WorkbenchCard() {
       className="workbench-card relative overflow-hidden"
       style={{
         borderRadius: "var(--card-radius)",
-        border: "1px solid var(--surface-border)",
+        border: "2px solid var(--surface-border)",
         background: "var(--surface)",
         padding: "32px 36px",
         color: "var(--fg)",
@@ -42,13 +42,13 @@ function DrivesSection() {
       <div>
         <h3
           className="wb-serif mb-4 text-2xl md:text-[1.9rem] leading-[1.15]"
-          style={{ color: "#ffffff" }}
+          style={{ color: "var(--fg)" }}
         >
           What Drives What I Build
         </h3>
         <p
-          className="text-[15px] leading-[1.8]"
-          style={{ color: "rgba(255,255,255,0.95)" }}
+          className="text-[17px] leading-[1.8]"
+          style={{ color: "var(--fg)" }}
         >
           Impact is the first question I ask when I build anything. Before the architecture,
           before the stack — I want to know whose life gets better and how. That instinct shows
@@ -87,6 +87,7 @@ function NodeGraph() {
     <svg
       viewBox="0 0 440 320"
       className="w-full h-auto max-w-[440px]"
+      style={{ color: "var(--fg)" }}
       role="img"
       aria-label="Graph connecting communities to projects"
     >
@@ -150,12 +151,13 @@ function NodeGraph() {
       {/* People nodes (warm white) */}
       {people.map((p) => (
         <g key={p.id} className={`wb-node wb-node-${p.drift}`}>
-          <circle cx={p.x} cy={p.y} r={7} fill="rgba(250,245,235,0.95)" filter="url(#wb-glow-white)" />
+          <circle cx={p.x} cy={p.y} r={7} fill="#a855f7" filter="url(#wb-glow-white)" opacity={0.55} />
           <text
             x={p.x - 14}
             y={p.y + 4}
-            fontSize={12}
-            fill="rgba(245,243,255,0.85)"
+            fontSize={13}
+            fontWeight={600}
+            fill="currentColor"
             textAnchor="end"
           >
             {p.label}
@@ -170,8 +172,9 @@ function NodeGraph() {
           <text
             x={p.x + 16}
             y={p.y + 4}
-            fontSize={12}
-            fill="rgba(216,180,254,0.95)"
+            fontSize={13}
+            fontWeight={600}
+            fill="currentColor"
             textAnchor="start"
           >
             {p.label}
@@ -189,7 +192,7 @@ function ThinkingSection() {
     <section>
       <h3
         className="wb-serif mb-6 text-2xl md:text-[1.9rem] leading-[1.15]"
-        style={{ color: "#ffffff" }}
+        style={{ color: "var(--fg)" }}
       >
         Currently Thinking About
       </h3>
@@ -236,8 +239,8 @@ function ThinkingCard({
         position: "relative",
         overflow: "hidden",
         borderRadius: 12,
-        background: "#17171c",
-        border: "1px solid rgba(255,255,255,0.06)",
+        background: "var(--surface)",
+        border: "2px solid var(--surface-border)",
         paddingTop: 32,
         paddingLeft: 36,
         paddingRight: 36,
@@ -252,7 +255,7 @@ function ThinkingCard({
         <h4
           className="wb-serif"
           style={{
-            color: "#ffffff",
+            color: "var(--fg)",
             fontSize: "1.35rem",
             lineHeight: 1.2,
             marginBottom: 14,
@@ -262,8 +265,8 @@ function ThinkingCard({
         </h4>
         <p
           style={{
-            color: "rgba(255,255,255,0.95)",
-            fontSize: 14,
+            color: "var(--fg)",
+            fontSize: 16,
             lineHeight: 1.75,
             margin: 0,
           }}
@@ -273,8 +276,8 @@ function ThinkingCard({
         <div className="wb-think-expand">
           <p
             style={{
-              color: "rgba(255,255,255,0.95)",
-              fontSize: 14,
+              color: "var(--fg)",
+              fontSize: 16,
               lineHeight: 1.75,
               marginTop: 24,
               paddingTop: 24,
@@ -407,28 +410,28 @@ function WhatsNextSection() {
     <section>
       <h3
         className="wb-serif mb-6 text-2xl md:text-[1.9rem] leading-[1.15] text-center"
-        style={{ color: "#ffffff" }}
+        style={{ color: "var(--fg)" }}
       >
         What&apos;s Next
       </h3>
       <div
         className="wb-dash-pulse mx-auto max-w-xl rounded-2xl text-center"
         style={{
-          background: "#0b0b0e",
+          background: "var(--surface)",
           border: "1.5px dashed rgba(168,85,247,0.4)",
           padding: "32px 36px",
         }}
       >
         <h4
           className="wb-serif mb-6 text-3xl md:text-[2.2rem] leading-[1.1]"
-          style={{ color: "#ffffff" }}
+          style={{ color: "var(--fg)" }}
         >
           Something&apos;s Coming
         </h4>
 
         <p
-          className="text-[15px] leading-[1.95] mb-8 text-left md:text-center"
-          style={{ color: "rgba(255,255,255,0.95)" }}
+          className="text-[17px] leading-[1.95] mb-8 text-left md:text-center"
+          style={{ color: "var(--fg)" }}
         >
           A centralized hub that{" "}
           <RedactedSpan width="8ch" />{" "}
@@ -439,34 +442,46 @@ function WhatsNextSection() {
           needed improving.
         </p>
 
-        <div className="text-left mx-auto" style={{ maxWidth: 380 }}>
+        <div className="text-left mx-auto" style={{ maxWidth: 420 }}>
           <div
-            className="flex items-center justify-between mb-2"
             style={{
-              color: "rgba(255,255,255,0.78)",
+              color: "var(--fg)",
               fontFamily: "inherit",
-              fontSize: 12,
-              fontWeight: 600,
-              letterSpacing: "0.08em",
+              fontSize: 15,
+              fontWeight: 700,
+              letterSpacing: "0.12em",
               textTransform: "uppercase",
+              marginBottom: 12,
             }}
           >
-            <span>
-              Building<span className="wb-blink" aria-hidden>|</span>
-            </span>
-            <span>73%</span>
+            Building<span className="wb-blink" aria-hidden>|</span>
           </div>
           <div
-            className="h-[6px] rounded-full overflow-hidden"
-            style={{ background: "rgba(255,255,255,0.06)" }}
+            className="h-[10px] rounded-full overflow-hidden"
+            style={{
+              background: "var(--surface-soft)",
+              border: "2px solid var(--surface-border)",
+            }}
           >
             <div
               className="wb-progress-fill h-full rounded-full"
               style={{
                 background: "linear-gradient(90deg, #a855f7, #c084fc)",
-                boxShadow: "0 0 12px rgba(168,85,247,0.6)",
+                boxShadow: "0 0 14px rgba(168,85,247,0.7)",
               }}
             />
+          </div>
+          <div
+            style={{
+              marginTop: 8,
+              textAlign: "right",
+              color: "var(--fg-muted)",
+              fontSize: 14,
+              fontWeight: 700,
+              letterSpacing: "0.05em",
+            }}
+          >
+            73%
           </div>
         </div>
       </div>
@@ -478,17 +493,16 @@ function RedactedSpan({ width }: { width: string }) {
   const style: CSSProperties = {
     display: "inline-block",
     minWidth: width,
-    height: "1em",
-    verticalAlign: "-0.15em",
-    background: "#000",
+    height: "1.1em",
+    verticalAlign: "-0.2em",
     color: "transparent",
-    borderRadius: 3,
+    borderRadius: 6,
     padding: "0 6px",
     userSelect: "none",
     position: "relative",
     overflow: "hidden",
   };
-  return <span className="wb-redacted" style={style} aria-label="redacted" />;
+  return <span className="wb-redacted" style={style} aria-label="hidden" />;
 }
 
 /* ── Divider ──────────────────────────────────────────────────────────────── */
@@ -558,16 +572,17 @@ const WORKBENCH_CSS = `
   top: 14px;
   right: 14px;
   z-index: 20;
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.1em;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: rgba(216, 180, 254, 0.95);
-  background: rgba(168, 85, 247, 0.16);
-  border: 1px solid rgba(168, 85, 247, 0.45);
+  color: #ffffff;
+  background: linear-gradient(135deg, #9333ea, #7c3aed);
+  border: 1px solid rgba(168, 85, 247, 0.6);
   border-radius: 999px;
-  padding: 4px 10px;
+  padding: 5px 12px;
   pointer-events: none;
+  box-shadow: 0 4px 14px rgba(168, 85, 247, 0.4);
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
 .workbench-card .wb-think-card:hover .wb-hover-badge {
@@ -577,14 +592,23 @@ const WORKBENCH_CSS = `
 
 /* Thinking-card hover expand */
 .workbench-card .wb-think-card {
+  border-width: 1.5px !important;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
   transition: box-shadow 0.4s ease, border-color 0.4s ease, transform 0.4s ease;
 }
 .workbench-card .wb-think-card:hover {
-  border-color: rgba(168,85,247,0.38);
+  border-color: rgba(168,85,247,0.55) !important;
   box-shadow:
     0 0 40px rgba(168, 85, 247, 0.22),
     inset 0 0 0 1px rgba(168, 85, 247, 0.25);
   transform: translateY(-2px);
+}
+
+/* Stronger card shadow for the workbench parent in light themes */
+html[data-theme="winter"] .workbench-card,
+html[data-theme="summer"] .workbench-card,
+html[data-theme="light"] .workbench-card {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
 }
 .workbench-card .wb-think-expand {
   max-height: 0;
@@ -597,19 +621,22 @@ const WORKBENCH_CSS = `
   opacity: 1;
 }
 
-/* Redacted sheen */
-@keyframes wb-redacted-sheen {
-  0%   { transform: translateX(-120%); }
-  100% { transform: translateX(120%); }
+/* "Redacted" → soft blurred placeholder with shimmer, theme-aware */
+.workbench-card .wb-redacted {
+  background: linear-gradient(
+    90deg,
+    rgba(168, 85, 247, 0.18),
+    rgba(168, 85, 247, 0.32),
+    rgba(168, 85, 247, 0.18)
+  );
+  background-size: 200% 100%;
+  animation: wb-redacted-shimmer 2.8s ease-in-out infinite;
+  border: 1px solid rgba(168, 85, 247, 0.35);
+  box-shadow: inset 0 0 8px rgba(168, 85, 247, 0.15);
 }
-.workbench-card .wb-redacted::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.06), transparent);
-  transform: translateX(-120%);
-  animation: wb-redacted-sheen 4.2s ease-in-out infinite;
-  pointer-events: none;
+@keyframes wb-redacted-shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
 }
 
 /* Progress bar — stops at 73%, never completes */

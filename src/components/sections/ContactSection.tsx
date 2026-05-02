@@ -17,7 +17,7 @@ const LinkedInIcon = () => (
 
 const fieldLabelStyle: React.CSSProperties = {
   display: "block",
-  fontSize: 14,
+  fontSize: 16,
   fontWeight: 500,
   textTransform: "lowercase",
   letterSpacing: "0.01em",
@@ -28,10 +28,10 @@ const fieldInputStyle: React.CSSProperties = {
   marginTop: 12,
   width: "100%",
   borderRadius: 16,
-  border: "1px solid var(--surface-border)",
+  border: "2px solid var(--surface-border)",
   background: "#ffffff",
   padding: "14px 20px",
-  fontSize: 14,
+  fontSize: 16,
   color: "#111827",
   outline: "none",
   transition: "all 0.3s",
@@ -43,12 +43,12 @@ export default function ContactSection() {
   const [status, setStatus] = useState<"idle" | "sent">("idle");
 
   return (
-    <section id="contact" style={{ position: "relative", overflow: "hidden", paddingTop: 160, paddingBottom: 200 }}>
+    <section id="contact" style={{ position: "relative", overflow: "hidden", paddingTop: 160, paddingBottom: 80 }}>
       <div style={{ maxWidth: 1440, margin: "0 auto", padding: "0 32px" }}>
 
         {/* Header — outside the bubble */}
         <header style={{ marginBottom: 48 }}>
-          <p style={{ fontSize: 12, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(129,140,248,0.7)" }}>
+          <p style={{ fontSize: 14, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(129,140,248,0.7)" }}>
             Contact
           </p>
           <h2 style={{ marginTop: 10, fontSize: "clamp(1.75rem,3.6vw,2.75rem)", fontWeight: 700, lineHeight: 1.15, letterSpacing: "-0.01em" }}>
@@ -59,7 +59,7 @@ export default function ContactSection() {
 
        <div style={{
          borderRadius: 20,
-         border: "1px solid var(--surface-border)",
+         border: "2px solid var(--surface-border)",
          background: "var(--surface)",
          padding: "28px 32px 44px",
        }}>
@@ -120,7 +120,7 @@ export default function ContactSection() {
                 borderRadius: 9999,
                 border: "none",
                 padding: "12px 24px",
-                fontSize: 13,
+                fontSize: 15,
                 fontWeight: 600,
                 backgroundColor: "#6366f1",
                 color: "#ffffff",

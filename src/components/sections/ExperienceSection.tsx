@@ -7,23 +7,21 @@ import FadeIn from "../FadeIn";
 
 type Category = "Frontend" | "Backend" | "Languages" | "Databases" | "AI & Data Science" | "Tools & DevOps";
 
-const categoryStyle: Record<Category, { border: string; background: string; color: string }> = {
-  "Frontend":          { border: "rgba(96,165,250,0.35)",  background: "rgba(96,165,250,0.10)",  color: "rgba(147,197,253,0.9)"  },
-  "Backend":           { border: "rgba(52,211,153,0.35)",  background: "rgba(52,211,153,0.10)",  color: "rgba(110,231,183,0.9)"  },
-  "Languages":         { border: "rgba(167,139,250,0.35)", background: "rgba(167,139,250,0.10)", color: "rgba(196,181,253,0.9)"  },
-  "Databases":         { border: "rgba(251,146,60,0.35)",  background: "rgba(251,146,60,0.10)",  color: "rgba(253,186,116,0.9)"  },
-  "AI & Data Science": { border: "rgba(244,114,182,0.35)", background: "rgba(244,114,182,0.10)", color: "rgba(249,168,212,0.9)"  },
-  "Tools & DevOps":    { border: "rgba(148,163,184,0.35)", background: "rgba(148,163,184,0.10)", color: "rgba(203,213,225,0.9)"  },
+const categoryClassName: Record<Category, string> = {
+  "Frontend":          "skill-pill cat-frontend",
+  "Backend":           "skill-pill cat-backend",
+  "Languages":         "skill-pill cat-languages",
+  "Databases":         "skill-pill cat-databases",
+  "AI & Data Science": "skill-pill cat-ai",
+  "Tools & DevOps":    "skill-pill cat-tools",
 };
 
-const defaultStyle = { border: "rgba(255,255,255,0.18)", background: "rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.65)" };
-
-function getPillStyle(skillName: string) {
+function getPillClass(skillName: string) {
   const match = skills.find(
     (s) => s.name.toLowerCase() === skillName.toLowerCase()
   );
-  if (!match) return defaultStyle;
-  return categoryStyle[match.category as Category] ?? defaultStyle;
+  if (!match) return "skill-pill cat-default";
+  return categoryClassName[match.category as Category] ?? "skill-pill cat-default";
 }
 
 function CompanyLogo({ exp }: { exp: Experience }) {
@@ -31,7 +29,7 @@ function CompanyLogo({ exp }: { exp: Experience }) {
 
   if (!exp.logo || failed) {
     return (
-      <span style={{ fontSize: 24, fontWeight: 700, color: "rgba(255,255,255,0.7)" }}>
+      <span style={{ fontSize: 26, fontWeight: 700, color: "var(--fg-muted)" }}>
         {exp.org.charAt(0)}
       </span>
     );
@@ -96,7 +94,7 @@ export default function ExperienceSection() {
                 className="timeline-card"
                 style={{
                   borderRadius: "var(--card-radius)",
-                  border: "1px solid var(--surface-border)",
+                  border: "2px solid var(--surface-border)",
                   background: "var(--surface)",
                   padding: "28px 32px",
                   transition: "border-color 0.35s ease, box-shadow 0.35s ease",
@@ -133,11 +131,11 @@ export default function ExperienceSection() {
                       const subtitle = parts[1];
                       return (
                         <div style={{ margin: 0 }}>
-                          <h3 style={{ fontSize: 18, fontWeight: 700, color: "var(--fg)", lineHeight: 1.3, margin: 0 }}>
+                          <h3 style={{ fontSize: 20, fontWeight: 700, color: "var(--fg)", lineHeight: 1.3, margin: 0 }}>
                             {mainTitle}
                           </h3>
                           {subtitle && (
-                            <p style={{ fontSize: 14, fontWeight: 500, color: "var(--fg-muted)", marginTop: 2 }}>
+                            <p style={{ fontSize: 16, fontWeight: 500, color: "var(--fg-muted)", marginTop: 2 }}>
                               {exp.roleIcon && <span style={{ marginRight: 6 }}>{exp.roleIcon}</span>}
                               {subtitle}
                             </p>
@@ -150,7 +148,7 @@ export default function ExperienceSection() {
                     <p style={{
                       marginTop: 6,
                       fontFamily: "monospace",
-                      fontSize: 13,
+                      fontSize: 15,
                       color: "var(--fg-subtle)",
                       letterSpacing: "0.04em",
                     }}>
@@ -160,7 +158,7 @@ export default function ExperienceSection() {
                     {/* Bullets */}
                     <ul style={{ marginTop: 14, paddingLeft: 0, listStyle: "none", display: "flex", flexDirection: "column", gap: 8 }}>
                       {exp.bullets.map((bullet, bi) => (
-                        <li key={bi} style={{ display: "flex", gap: 8, fontSize: 14, lineHeight: 1.7, color: "var(--fg-muted)" }}>
+                        <li key={bi} style={{ display: "flex", gap: 8, fontSize: 16, lineHeight: 1.7, color: "var(--fg-muted)" }}>
                           <span style={{ marginTop: 2, flexShrink: 0, color: "var(--fg-subtle)" }}>•</span>
                           <span className="exp-bullet" dangerouslySetInnerHTML={{ __html: bullet }} />
                         </li>
@@ -170,27 +168,22 @@ export default function ExperienceSection() {
                     {/* Skill pills */}
                     {exp.skills && exp.skills.length > 0 && (
                       <div style={{ marginTop: 18, display: "flex", flexWrap: "wrap", gap: 8 }}>
-                        {exp.skills.map((s) => {
-                          const pill = getPillStyle(s);
-                          return (
-                            <span
-                              key={s}
-                              style={{
-                                display: "inline-block",
-                                padding: "7px 18px",
-                                borderRadius: 999,
-                                border: `1px solid ${pill.border}`,
-                                background: pill.background,
-                                fontSize: 13,
-                                fontWeight: 500,
-                                color: pill.color,
-                                whiteSpace: "nowrap",
-                              }}
-                            >
-                              {s}
-                            </span>
-                          );
-                        })}
+                        {exp.skills.map((s) => (
+                          <span
+                            key={s}
+                            className={getPillClass(s)}
+                            style={{
+                              display: "inline-block",
+                              padding: "7px 18px",
+                              borderRadius: 999,
+                              fontSize: 15,
+                              fontWeight: 600,
+                              whiteSpace: "nowrap",
+                            }}
+                          >
+                            {s}
+                          </span>
+                        ))}
                       </div>
                     )}
 

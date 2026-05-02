@@ -66,7 +66,7 @@ export default function AboutPage() {
               >
                 About <span className="gradient-text">me</span>
               </h1>
-              <p style={{ color: "rgba(255,255,255,0.95)", fontSize: 15, lineHeight: 1.7, maxWidth: 620 }}>
+              <p style={{ color: "var(--fg)", fontSize: 17, lineHeight: 1.7, maxWidth: 620 }}>
                 A longer version of the story — who I am, what I care about, and what I&apos;m working on
                 beyond the highlights on the home page.
               </p>
@@ -103,14 +103,14 @@ export default function AboutPage() {
                 <div
                   style={{
                     borderRadius: "var(--card-radius)",
-                    border: "1px solid var(--surface-border)",
+                    border: "2px solid var(--surface-border)",
                     background: "var(--surface)",
                     padding: "32px 36px",
                   }}
                 >
                   <h2
                     style={{
-                      fontSize: 22,
+                      fontSize: 24,
                       fontWeight: 700,
                       color: "var(--fg)",
                       margin: 0,
@@ -122,8 +122,8 @@ export default function AboutPage() {
                   </h2>
                   <div
                     style={{
-                      color: "rgba(255,255,255,0.95)",
-                      fontSize: 15,
+                      color: "var(--fg)",
+                      fontSize: 17,
                       lineHeight: 1.8,
                       display: "flex",
                       flexDirection: "column",
@@ -311,7 +311,7 @@ function TechIWorkWith() {
     <div>
       <h2
         style={{
-          fontSize: 22,
+          fontSize: 24,
           fontWeight: 700,
           color: "var(--fg)",
           margin: 0,
@@ -339,9 +339,9 @@ function TechPill({ item }: { item: TechItem }) {
         gap: 8,
         padding: "5px 14px 5px 5px",
         borderRadius: 999,
-        border: "1px solid var(--surface-border)",
+        border: "2px solid var(--surface-border)",
         background: "var(--surface-soft)",
-        fontSize: 13,
+        fontSize: 15,
         fontWeight: 500,
         color: "var(--fg)",
         whiteSpace: "nowrap",
@@ -378,14 +378,14 @@ function MotionSection() {
     <div
       style={{
         borderRadius: "var(--card-radius)",
-        border: "1px solid var(--surface-border)",
+        border: "2px solid var(--surface-border)",
         background: "var(--surface)",
         padding: "32px 36px",
       }}
     >
       <h2
         style={{
-          fontSize: 22,
+          fontSize: 24,
           fontWeight: 700,
           color: "var(--fg)",
           margin: 0,
@@ -397,8 +397,8 @@ function MotionSection() {
       </h2>
       <div
         style={{
-          color: "rgba(255,255,255,0.95)",
-          fontSize: 15,
+          color: "var(--fg)",
+          fontSize: 17,
           lineHeight: 1.8,
           display: "flex",
           flexDirection: "column",

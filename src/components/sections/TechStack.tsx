@@ -22,7 +22,7 @@ export default function TechStack() {
 
       {/* Header */}
       <header style={{ textAlign: "center", marginBottom: 48 }}>
-        <h2 style={{ fontSize: 32, fontWeight: 700, letterSpacing: "-0.02em" }}>
+        <h2 style={{ fontSize: 34, fontWeight: 700, letterSpacing: "-0.02em" }}>
           Skills
         </h2>
       </header>
@@ -44,7 +44,7 @@ export default function TechStack() {
               <div
                 style={{
                   borderRadius: "var(--card-radius)",
-                  border: "1px solid var(--surface-border)",
+                  border: "2px solid var(--surface-border)",
                   background: "var(--surface-soft)",
                   padding: 24,
                 }}
@@ -60,7 +60,7 @@ export default function TechStack() {
                       background: categoryAccent[cat],
                     }}
                   />
-                  <h3 style={{ fontSize: 16, fontWeight: 700, letterSpacing: "-0.01em" }}>
+                  <h3 style={{ fontSize: 18, fontWeight: 700, letterSpacing: "-0.01em" }}>
                     {cat}
                   </h3>
                 </div>
@@ -127,7 +127,7 @@ function SkillCard({ skill }: { skill: (typeof skills)[number] }) {
       <span
         style={{
           textAlign: "center",
-          fontSize: 11,
+          fontSize: 13,
           fontWeight: 500,
           color: "var(--fg-muted)",
           lineHeight: 1.2,

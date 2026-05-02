@@ -150,7 +150,7 @@ export default function WinterSnow() {
       style={{
         position: "fixed",
         inset: 0,
-        zIndex: 1,
+        zIndex: -5,
         pointerEvents: "none",
       }}
     />

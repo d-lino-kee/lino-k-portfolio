@@ -376,7 +376,7 @@ export default function ProjectsSection() {
         <FadeIn>
           <div style={{ marginBottom: 48, display: "flex", alignItems: "flex-end", justifyContent: "space-between", gap: 24 }}>
             <div>
-              <p style={{ fontSize: 12, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(129,140,248,0.7)" }}>
+              <p style={{ fontSize: 14, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(129,140,248,0.7)" }}>
                 Latest Projects
               </p>
               <h2 style={{ marginTop: 10, fontSize: "clamp(1.75rem,3.6vw,2.75rem)", fontWeight: 700, lineHeight: 1.15, letterSpacing: "-0.01em", color: "var(--fg)" }}>
@@ -389,8 +389,8 @@ export default function ProjectsSection() {
               rel="noreferrer"
               style={{
                 display: "inline-flex", alignItems: "center", gap: 8,
-                borderRadius: 999, border: "1px solid var(--surface-border)",
-                padding: "8px 16px", fontSize: 13, fontWeight: 500,
+                borderRadius: 999, border: "2px solid var(--surface-border)",
+                padding: "8px 16px", fontSize: 15, fontWeight: 500,
                 color: "var(--fg-muted)", textDecoration: "none",
                 transition: "all 0.2s",
               }}
@@ -417,7 +417,7 @@ export default function ProjectsSection() {
           <>
             <FadeIn>
               <div style={{ marginTop: 72, marginBottom: 32 }}>
-                <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(251,191,36,0.7)" }}>
+                <p style={{ fontSize: 13, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(251,191,36,0.7)" }}>
                   More Projects
                 </p>
                 <h3 style={{ marginTop: 8, fontSize: "clamp(1.2rem,2.5vw,1.75rem)", fontWeight: 700, color: "var(--fg)" }}>
@@ -449,7 +449,7 @@ function ProjectCard({ project: p }: { project: Project }) {
       style={{
         borderRadius: 20,
         overflow: "hidden",
-        border: "1px solid var(--surface-border)",
+        border: "2px solid var(--surface-border)",
         background: "var(--surface)",
         display: "flex",
         flexDirection: "column",
@@ -499,7 +499,7 @@ function ProjectCard({ project: p }: { project: Project }) {
           background: "rgba(0,0,0,0.45)", backdropFilter: "blur(8px)",
           border: "1px solid rgba(255,255,255,0.1)",
           borderRadius: 999, padding: "3px 10px",
-          fontSize: 10, fontWeight: 600, color: "rgba(255,255,255,0.7)",
+          fontSize: 12, fontWeight: 600, color: "rgba(255,255,255,0.7)",
           letterSpacing: "0.04em",
         }}>
           {p.categories[0]}
@@ -536,14 +536,14 @@ function ProjectCard({ project: p }: { project: Project }) {
 
       {/* Card body */}
       <div style={{ padding: "16px 20px 20px", flex: 1, display: "flex", flexDirection: "column" }}>
-        <h3 style={{ fontSize: 15, fontWeight: 700, color: "var(--fg)", lineHeight: 1.3, margin: 0 }}>
+        <h3 style={{ fontSize: 17, fontWeight: 700, color: "var(--fg)", lineHeight: 1.3, margin: 0 }}>
           {p.title}
         </h3>
-        <p style={{ marginTop: 3, fontSize: 11, color: "var(--fg-subtle)", fontWeight: 500 }}>
+        <p style={{ marginTop: 3, fontSize: 13, color: "var(--fg-subtle)", fontWeight: 500 }}>
           {p.subtitle}
         </p>
         <p style={{
-          marginTop: 10, fontSize: 12.5, lineHeight: 1.65,
+          marginTop: 10, fontSize: 14.5, lineHeight: 1.65,
           color: "var(--fg-muted)",
           display: "-webkit-box", WebkitLineClamp: 2,
           WebkitBoxOrient: "vertical", overflow: "hidden",
@@ -555,16 +555,16 @@ function ProjectCard({ project: p }: { project: Project }) {
         <div style={{ marginTop: 14, display: "flex", flexWrap: "wrap", gap: 6 }}>
           {p.tech.slice(0, 4).map((t) => (
             <span key={t} style={{
-              borderRadius: 999, border: "1px solid var(--surface-border)",
-              padding: "2px 9px", fontSize: 10.5, color: "var(--fg-muted)",
+              borderRadius: 999, border: "2px solid var(--surface-border)",
+              padding: "2px 9px", fontSize: 12.5, color: "var(--fg-muted)",
             }}>
               {t}
             </span>
           ))}
           {p.tech.length > 4 && (
             <span style={{
-              borderRadius: 999, border: "1px solid var(--surface-border)",
-              padding: "2px 9px", fontSize: 10.5, color: "var(--fg-subtle)",
+              borderRadius: 999, border: "2px solid var(--surface-border)",
+              padding: "2px 9px", fontSize: 12.5, color: "var(--fg-subtle)",
             }}>
               +{p.tech.length - 4}
             </span>

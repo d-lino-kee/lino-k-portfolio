@@ -76,6 +76,48 @@ a {
   text-decoration: none;
 }
 
+/* ── Skill pills (Experience section) ──────────────────── */
+.skill-pill {
+  border: 1px solid var(--pill-border, rgba(255,255,255,0.18));
+  background: var(--pill-bg, rgba(255,255,255,0.06));
+  color: var(--pill-color, rgba(255,255,255,0.9));
+  transition: filter 0.2s ease;
+}
+
+/* Dark theme defaults — bright translucent colors for dark backgrounds */
+.skill-pill.cat-frontend  { --pill-border: rgba(96,165,250,0.5);  --pill-bg: rgba(96,165,250,0.14);  --pill-color: rgba(186,230,253,1); }
+.skill-pill.cat-backend   { --pill-border: rgba(52,211,153,0.5);  --pill-bg: rgba(52,211,153,0.14);  --pill-color: rgba(167,243,208,1); }
+.skill-pill.cat-languages { --pill-border: rgba(167,139,250,0.5); --pill-bg: rgba(167,139,250,0.14); --pill-color: rgba(221,214,254,1); }
+.skill-pill.cat-databases { --pill-border: rgba(251,146,60,0.5);  --pill-bg: rgba(251,146,60,0.14);  --pill-color: rgba(254,215,170,1); }
+.skill-pill.cat-ai        { --pill-border: rgba(244,114,182,0.5); --pill-bg: rgba(244,114,182,0.14); --pill-color: rgba(251,207,232,1); }
+.skill-pill.cat-tools     { --pill-border: rgba(148,163,184,0.5); --pill-bg: rgba(148,163,184,0.14); --pill-color: rgba(226,232,240,1); }
+.skill-pill.cat-default   { --pill-border: var(--surface-border); --pill-bg: var(--surface-soft);   --pill-color: var(--fg-muted); }
+
+/* Light theme overrides — saturated dark colors for light backgrounds */
+html[data-theme="winter"] .skill-pill.cat-frontend,
+html[data-theme="summer"] .skill-pill.cat-frontend,
+html[data-theme="light"]  .skill-pill.cat-frontend  { --pill-border: rgba(37,99,235,0.55);  --pill-bg: rgba(37,99,235,0.14);  --pill-color: rgba(30,64,175,1); }
+
+html[data-theme="winter"] .skill-pill.cat-backend,
+html[data-theme="summer"] .skill-pill.cat-backend,
+html[data-theme="light"]  .skill-pill.cat-backend   { --pill-border: rgba(5,150,105,0.55);  --pill-bg: rgba(5,150,105,0.14);  --pill-color: rgba(6,95,70,1); }
+
+html[data-theme="winter"] .skill-pill.cat-languages,
+html[data-theme="summer"] .skill-pill.cat-languages,
+html[data-theme="light"]  .skill-pill.cat-languages { --pill-border: rgba(124,58,237,0.55); --pill-bg: rgba(124,58,237,0.14); --pill-color: rgba(76,29,149,1); }
+
+html[data-theme="winter"] .skill-pill.cat-databases,
+html[data-theme="summer"] .skill-pill.cat-databases,
+html[data-theme="light"]  .skill-pill.cat-databases { --pill-border: rgba(234,88,12,0.55);  --pill-bg: rgba(234,88,12,0.14);  --pill-color: rgba(154,52,18,1); }
+
+html[data-theme="winter"] .skill-pill.cat-ai,
+html[data-theme="summer"] .skill-pill.cat-ai,
+html[data-theme="light"]  .skill-pill.cat-ai        { --pill-border: rgba(219,39,119,0.55); --pill-bg: rgba(219,39,119,0.14); --pill-color: rgba(157,23,77,1); }
+
+html[data-theme="winter"] .skill-pill.cat-tools,
+html[data-theme="summer"] .skill-pill.cat-tools,
+html[data-theme="light"]  .skill-pill.cat-tools     { --pill-border: rgba(71,85,105,0.55);  --pill-bg: rgba(71,85,105,0.14);  --pill-color: rgba(30,41,59,1); }
+
 /* ── Experience timeline ───────────────────────────────── */
 .timeline-row {
   --dot-color: #a855f7;

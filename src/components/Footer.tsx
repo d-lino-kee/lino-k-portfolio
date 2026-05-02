@@ -58,7 +58,7 @@ export default function Footer() {
       </div>
 
       {/* Copyright */}
-      <p style={{ marginTop: 24, textAlign: "center", fontSize: 13, color: "var(--fg-subtle)" }}>
+      <p style={{ marginTop: 24, textAlign: "center", fontSize: 15, color: "var(--fg-subtle)" }}>
         © {new Date().getFullYear()}{" "}
         <span style={{ color: "var(--fg-muted)", fontWeight: 500 }}>Lino Kee</span>
       </p>

@@ -6,7 +6,7 @@ import Typewriter from "../Typewriter";
 export default function Hero() {
   return (
     <section id="hero" className="relative overflow-hidden pb-16" style={{ paddingTop: 100 }}>
-      <div className="mx-auto max-w-6xl px-6 flex flex-col items-center text-center">
+      <div className="mx-auto flex flex-col items-center text-center" style={{ maxWidth: 1440, padding: "0 32px" }}>
 
         {/* Greeting */}
         <h2
@@ -55,7 +55,7 @@ export default function Hero() {
             border: "1px solid rgba(255,255,255,0.12)",
             borderRadius: 10,
             padding: "7px 12px",
-            fontSize: 13,
+            fontSize: 15,
             fontWeight: 700,
             color: "rgba(255,255,255,0.85)",
             fontFamily: "monospace",
@@ -104,7 +104,7 @@ export default function Hero() {
               border: "1px solid rgba(16,185,129,0.25)",
               borderRadius: 999,
               padding: "4px 10px",
-              fontSize: 10.5,
+              fontSize: 12.5,
               fontWeight: 500,
               color: "rgba(16,185,129,0.9)",
             }}>
@@ -119,7 +119,7 @@ export default function Hero() {
               border: "1px solid rgba(99,102,241,0.25)",
               borderRadius: 999,
               padding: "4px 10px",
-              fontSize: 10.5,
+              fontSize: 12.5,
               fontWeight: 500,
               color: "rgba(147,197,253,0.9)",
             }}>
@@ -152,8 +152,8 @@ export default function Hero() {
 
           {/* Subtitle */}
           <div
-            className="animate-slide-up mt-6 max-w-[60ch] text-[15px] leading-[1.75] text-left"
-            style={{ animationDelay: "450ms", color: "rgba(255,255,255,0.92)" }}
+            className="animate-slide-up mt-6 text-[17px] leading-[1.75] text-left w-full"
+            style={{ animationDelay: "450ms", color: "var(--fg)", maxWidth: 1100 }}
           >
             <p>
               I&apos;m a 4th-year Management Engineering student at Waterloo, and

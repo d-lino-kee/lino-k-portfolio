@@ -44,8 +44,8 @@ const stats = [
 
 export default function StatsSection() {
   return (
-    <section style={{ padding: "24px 0 48px" }}>
-      <div style={{ maxWidth: 950, margin: "0 auto", padding: "0 24px" }}>
+    <section style={{ padding: "80px 0 16px" }}>
+      <div style={{ maxWidth: 1440, margin: "0 auto", padding: "0 32px" }}>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 20 }}>
           {stats.map((stat, i) => (
             <FadeIn key={stat.label} delay={i * 100}>
@@ -55,7 +55,7 @@ export default function StatsSection() {
                   alignItems: "center",
                   gap: 20,
                   borderRadius: "var(--card-radius)",
-                  border: "1px solid var(--surface-border)",
+                  border: "2px solid var(--surface-border)",
                   background: "var(--surface)",
                   padding: "24px 28px",
                 }}
@@ -78,10 +78,10 @@ export default function StatsSection() {
 
                 {/* Text */}
                 <div>
-                  <div style={{ fontSize: 36, fontWeight: 800, color: "var(--fg)", lineHeight: 1 }}>
+                  <div style={{ fontSize: 38, fontWeight: 800, color: "var(--fg)", lineHeight: 1 }}>
                     {stat.value}
                   </div>
-                  <div style={{ marginTop: 6, fontSize: 14, color: "var(--fg-muted)", display: "flex", alignItems: "center", gap: 6 }}>
+                  <div style={{ marginTop: 6, fontSize: 16, color: "var(--fg-muted)", display: "flex", alignItems: "center", gap: 6 }}>
                     <span style={{ width: 6, height: 6, borderRadius: "50%", background: stat.color, flexShrink: 0, display: "inline-block" }} />
                     {stat.label}
                   </div>
