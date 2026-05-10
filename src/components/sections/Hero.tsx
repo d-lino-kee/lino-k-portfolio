@@ -108,7 +108,7 @@ export default function Hero() {
               fontWeight: 500,
               color: "rgba(16,185,129,0.9)",
             }}>
-              <span style={{ width: 5, height: 5, borderRadius: "50%", background: "#10b981", display: "inline-block", flexShrink: 0 }} />
+              <span style={{ width: 15, height: 15, borderRadius: "50%", background: "#10b981", display: "inline-block", flexShrink: 0 }} />
               Seeking Fall 2026 Internships
             </div>
             <div style={{
@@ -123,7 +123,7 @@ export default function Hero() {
               fontWeight: 500,
               color: "rgba(147,197,253,0.9)",
             }}>
-              <span style={{ width: 5, height: 5, borderRadius: "50%", background: "#6366f1", display: "inline-block", flexShrink: 0 }} />
+              <span style={{ width: 15, height: 15, borderRadius: "50%", background: "#6366f1", display: "inline-block", flexShrink: 0 }} />
               Available for 2027 New Grad Opportunities
             </div>
           </div>

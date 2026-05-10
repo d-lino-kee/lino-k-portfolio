@@ -1,6 +1,7 @@
 "use client";
 
-import { ExternalLink } from "lucide-react";
+import { useEffect, useState } from "react";
+import { ExternalLink, X } from "lucide-react";
 import { projects, type Project } from "../../data/projects";
 import FadeIn from "../FadeIn";
 
@@ -367,6 +368,7 @@ const projectIcons: Record<string, (accent: string) => React.ReactNode> = {
 export default function ProjectsSection() {
   const featured = projects.filter((p) => p.featured || p.categories.includes("AI & ML") || p.categories.includes("Web Development")).slice(0, 6);
   const others = projects.filter((p) => !featured.includes(p));
+  const [selected, setSelected] = useState<Project | null>(null);
 
   return (
     <section id="projects" style={{ position: "relative", overflow: "hidden", padding: "80px 0" }}>
@@ -407,7 +409,7 @@ export default function ProjectsSection() {
         <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 24 }}>
           {featured.map((p, idx) => (
             <FadeIn key={p.title} delay={idx * 80} direction="scale">
-              <ProjectCard project={p} />
+              <ProjectCard project={p} onOpen={() => setSelected(p)} />
             </FadeIn>
           ))}
         </div>
@@ -428,7 +430,7 @@ export default function ProjectsSection() {
             <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 24 }}>
               {others.map((p, idx) => (
                 <FadeIn key={p.title} delay={idx * 80} direction="scale">
-                  <ProjectCard project={p} />
+                  <ProjectCard project={p} onOpen={() => setSelected(p)} />
                 </FadeIn>
               ))}
             </div>
@@ -436,16 +438,27 @@ export default function ProjectsSection() {
         )}
 
       </div>
+
+      {selected && <ProjectModal project={selected} onClose={() => setSelected(null)} />}
     </section>
   );
 }
 
-function ProjectCard({ project: p }: { project: Project }) {
+function ProjectCard({ project: p, onOpen }: { project: Project; onOpen: () => void }) {
   const link = p.links?.find((l) => l.href && l.href !== "#");
   const theme = getTheme(p.title);
 
   return (
     <div
+      role="button"
+      tabIndex={0}
+      onClick={onOpen}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          onOpen();
+        }
+      }}
       style={{
         borderRadius: 20,
         overflow: "hidden",
@@ -454,7 +467,7 @@ function ProjectCard({ project: p }: { project: Project }) {
         display: "flex",
         flexDirection: "column",
         transition: "transform 0.25s, box-shadow 0.25s",
-        cursor: "default",
+        cursor: "pointer",
       }}
       onMouseEnter={(e) => {
         (e.currentTarget as HTMLDivElement).style.transform = "translateY(-4px)";
@@ -511,6 +524,7 @@ function ProjectCard({ project: p }: { project: Project }) {
             href={link.href}
             target="_blank"
             rel="noreferrer"
+            onClick={(e) => e.stopPropagation()}
             style={{
               position: "absolute", top: 10, right: 10,
               width: 30, height: 30, borderRadius: 8,
@@ -569,6 +583,180 @@ function ProjectCard({ project: p }: { project: Project }) {
               +{p.tech.length - 4}
             </span>
           )}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function ProjectModal({ project: p, onClose }: { project: Project; onClose: () => void }) {
+  const theme = getTheme(p.title);
+  const link = p.links?.find((l) => l.href && l.href !== "#");
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+    };
+    window.addEventListener("keydown", onKey);
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      document.body.style.overflow = prevOverflow;
+    };
+  }, [onClose]);
+
+  return (
+    <div
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="project-modal-title"
+      onClick={onClose}
+      style={{
+        position: "fixed", inset: 0, zIndex: 100,
+        background: "rgba(0,0,0,0.7)", backdropFilter: "blur(6px)",
+        display: "flex", alignItems: "center", justifyContent: "center",
+        padding: 24, animation: "fadeIn 0.2s ease",
+      }}
+    >
+      <div
+        onClick={(e) => e.stopPropagation()}
+        style={{
+          position: "relative",
+          width: "100%", maxWidth: 720,
+          maxHeight: "90vh", overflowY: "auto",
+          borderRadius: 20,
+          border: "2px solid var(--surface-border)",
+          background: "var(--surface)",
+          color: "var(--fg)",
+          boxShadow: "0 30px 80px rgba(0,0,0,0.6)",
+        }}
+      >
+        {/* Hero banner */}
+        <div style={{ position: "relative", height: 200, background: theme.gradient, overflow: "hidden" }}>
+          <PatternOverlay type={theme.pattern} />
+          <div style={{
+            position: "absolute", width: 220, height: 220,
+            borderRadius: "50%",
+            background: `radial-gradient(circle, ${theme.accent}33 0%, transparent 70%)`,
+            top: "50%", left: "50%", transform: "translate(-50%,-50%)",
+            pointerEvents: "none",
+          }} />
+          <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center" }}>
+            {projectIcons[p.title] ? projectIcons[p.title](theme.accent) : (
+              <span style={{ fontSize: 100, fontWeight: 900, color: "rgba(255,255,255,0.08)", letterSpacing: "-0.05em" }}>
+                {p.title.charAt(0)}
+              </span>
+            )}
+          </div>
+
+          {/* Close button */}
+          <button
+            aria-label="Close"
+            onClick={onClose}
+            style={{
+              position: "absolute", top: 12, right: 12,
+              width: 36, height: 36, borderRadius: 10,
+              background: "rgba(0,0,0,0.55)", backdropFilter: "blur(8px)",
+              border: "1px solid rgba(255,255,255,0.12)",
+              display: "flex", alignItems: "center", justifyContent: "center",
+              color: "rgba(255,255,255,0.85)", cursor: "pointer",
+              transition: "all 0.2s",
+            }}
+            onMouseEnter={(e) => { e.currentTarget.style.background = "rgba(0,0,0,0.8)"; e.currentTarget.style.color = "#fff"; }}
+            onMouseLeave={(e) => { e.currentTarget.style.background = "rgba(0,0,0,0.55)"; e.currentTarget.style.color = "rgba(255,255,255,0.85)"; }}
+          >
+            <X style={{ width: 18, height: 18 }} />
+          </button>
+
+          {/* Category pill */}
+          <span style={{
+            position: "absolute", top: 14, left: 14,
+            background: "rgba(0,0,0,0.5)", backdropFilter: "blur(8px)",
+            border: "1px solid rgba(255,255,255,0.12)",
+            borderRadius: 999, padding: "4px 12px",
+            fontSize: 12.5, fontWeight: 600, color: "rgba(255,255,255,0.85)",
+            letterSpacing: "0.04em",
+          }}>
+            {p.categories[0]}
+          </span>
+
+          {/* Accent bar */}
+          <div style={{
+            position: "absolute", bottom: 0, left: 0, right: 0, height: 3,
+            background: `linear-gradient(90deg, transparent, ${theme.accent}, transparent)`,
+          }} />
+        </div>
+
+        {/* Body */}
+        <div style={{ padding: "24px 28px 28px" }}>
+          <h2 id="project-modal-title" style={{ fontSize: 26, fontWeight: 700, margin: 0, color: "var(--fg)" }}>
+            {p.title}
+          </h2>
+          <p style={{ marginTop: 4, fontSize: 14, color: "var(--fg-subtle)", fontWeight: 500 }}>
+            {p.subtitle} · {p.date}
+          </p>
+
+          <p style={{ marginTop: 16, fontSize: 15, lineHeight: 1.7, color: "var(--fg-muted)" }}>
+            {p.description}
+          </p>
+
+          {p.highlights?.length > 0 && (
+            <div style={{ marginTop: 20 }}>
+              <h3 style={{ fontSize: 13, fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--fg-subtle)", margin: 0 }}>
+                Highlights
+              </h3>
+              <ul style={{ marginTop: 10, paddingLeft: 18, display: "flex", flexDirection: "column", gap: 8 }}>
+                {p.highlights.map((h, i) => (
+                  <li key={i} style={{ fontSize: 14.5, lineHeight: 1.6, color: "var(--fg-muted)" }}>
+                    {h}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {/* Tech */}
+          <div style={{ marginTop: 22, display: "flex", flexWrap: "wrap", gap: 6 }}>
+            {p.tech.map((t) => (
+              <span key={t} style={{
+                borderRadius: 999, border: "2px solid var(--surface-border)",
+                padding: "3px 11px", fontSize: 12.5, color: "var(--fg-muted)",
+              }}>
+                {t}
+              </span>
+            ))}
+          </div>
+
+          {/* Project link */}
+          <div style={{ marginTop: 24, display: "flex", flexWrap: "wrap", gap: 10 }}>
+            {p.links?.filter((l) => l.href && l.href !== "#").map((l) => (
+              <a
+                key={l.href}
+                href={l.href}
+                target="_blank"
+                rel="noreferrer"
+                style={{
+                  display: "inline-flex", alignItems: "center", gap: 8,
+                  padding: "10px 18px", borderRadius: 12,
+                  background: theme.accent, color: "#0b0b0d",
+                  fontSize: 14, fontWeight: 700, textDecoration: "none",
+                  boxShadow: `0 6px 20px ${theme.accent}40`,
+                  transition: "transform 0.15s",
+                }}
+                onMouseEnter={(e) => { e.currentTarget.style.transform = "translateY(-2px)"; }}
+                onMouseLeave={(e) => { e.currentTarget.style.transform = "translateY(0)"; }}
+              >
+                <ExternalLink style={{ width: 14, height: 14 }} />
+                {l.label}
+              </a>
+            ))}
+            {!p.links?.some((l) => l.href && l.href !== "#") && (
+              <span style={{ fontSize: 13, color: "var(--fg-subtle)", fontStyle: "italic" }}>
+                Project link coming soon.
+              </span>
+            )}
+          </div>
         </div>
       </div>
     </div>

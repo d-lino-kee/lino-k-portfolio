@@ -194,30 +194,36 @@ export default function AboutPage() {
                 </SlideIn>
               </Row>
 
-              {/* CTA */}
+              {/* CTA endpoint anchor — sets where the path's dot lands */}
               <Row align="right" widthPct={40}>
-                <FadeIn delay={340}>
-                  <div
-                    style={{
-                      display: "flex",
-                      flexWrap: "wrap",
-                      gap: 12,
-                      alignItems: "center",
-                      justifyContent: "flex-start",
-                      marginLeft: -28,
-                    }}
-                  >
-                    <Link href="/#projects" className="hero-cta hero-cta--primary">
-                      See what I&apos;ve built
-                    </Link>
-                    <Link href="/#contact" className="hero-cta hero-cta--secondary">
-                      Get in touch
-                    </Link>
-                  </div>
-                </FadeIn>
+                <div style={{ height: 80 }} />
               </Row>
               </div>
             </div>
+
+            {/* CTA buttons — sit below the trace-line endpoint */}
+            <FadeIn delay={340}>
+              <div style={{ display: "flex", justifyContent: "flex-end", marginTop: 40 }}>
+                <div
+                  style={{
+                    width: "40%",
+                    display: "flex",
+                    flexWrap: "wrap",
+                    gap: 12,
+                    alignItems: "center",
+                    justifyContent: "flex-start",
+                    marginLeft: -120,
+                  }}
+                >
+                  <Link href="/#projects" className="hero-cta hero-cta--primary">
+                    See what I&apos;ve built
+                  </Link>
+                  <Link href="/#contact" className="hero-cta hero-cta--secondary">
+                    Get in touch
+                  </Link>
+                </div>
+              </div>
+            </FadeIn>
 
             <div style={{ marginTop: 80 }}>
               <Footer />
