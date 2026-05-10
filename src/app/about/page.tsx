@@ -203,7 +203,8 @@ export default function AboutPage() {
                       flexWrap: "wrap",
                       gap: 12,
                       alignItems: "center",
-                      justifyContent: "flex-end",
+                      justifyContent: "flex-start",
+                      marginLeft: -28,
                     }}
                   >
                     <Link href="/#projects" className="hero-cta hero-cta--primary">
