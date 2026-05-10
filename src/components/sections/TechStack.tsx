@@ -45,7 +45,8 @@ export default function TechStack() {
                 style={{
                   borderRadius: "var(--card-radius)",
                   border: "2px solid var(--surface-border)",
-                  background: "var(--surface-soft)",
+                  background:
+                    "linear-gradient(var(--surface-soft), var(--surface-soft)), linear-gradient(var(--surface-soft), var(--surface-soft)), linear-gradient(var(--surface-soft), var(--surface-soft)), var(--surface-soft)",
                   padding: 24,
                 }}
               >
@@ -104,7 +105,8 @@ function SkillCard({ skill }: { skill: (typeof skills)[number] }) {
           width: 48,
           height: 48,
           borderRadius: 12,
-          background: "rgba(255,255,255,0.06)",
+          background: "var(--surface)",
+          border: "1px solid var(--surface-border)",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
@@ -128,8 +130,8 @@ function SkillCard({ skill }: { skill: (typeof skills)[number] }) {
         style={{
           textAlign: "center",
           fontSize: 13,
-          fontWeight: 500,
-          color: "var(--fg-muted)",
+          fontWeight: 600,
+          color: "var(--fg)",
           lineHeight: 1.2,
         }}
       >

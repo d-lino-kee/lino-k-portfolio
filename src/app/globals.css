@@ -339,7 +339,9 @@ html[data-theme="vscode"] .nav-pill:hover {
 .hero-cta {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
+  min-width: 200px;
   padding: 14px 26px;
   border-radius: 14px;
   font-size: 14px;
