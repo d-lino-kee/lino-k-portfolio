@@ -18,6 +18,7 @@ export type Project = {
     links: { label: string; href: string }[];
     featured?: boolean;
     gradient?: string; // tailwind gradient for card background
+    image?: string; // optional cover image (path under /public) — overrides the SVG illustration
 };
 
 export const projects: Project[] = [
@@ -64,6 +65,7 @@ export const projects: Project[] = [
       { label: "GitHub", href: "#" },
     ],
     gradient: "from-violet-900/40 to-purple-900/20",
+    image: "/projects/optitime-ai-decision-support.jpg",
   },
 
   {
@@ -87,6 +89,27 @@ export const projects: Project[] = [
       },
     ],
     gradient: "from-blue-900/40 to-cyan-900/20",
+    image: "/projects/car-recommender.jpg",
+  },
+
+  {
+    title: "StrideSense",
+    subtitle: "Multi-Framework Running Recommendation Platform",
+    date: "Nov 2025 – Feb 2026",
+    description:
+      "A full-stack running recommendation platform that surfaces personalized routes from user activity and location context, powered by a scikit-learn model and Strava + Google Maps integration.",
+    highlights: [
+      "Built a full-stack platform with Next.js/TypeScript + FastAPI, integrating Strava and Google Maps APIs to surface personalized route suggestions based on user activity and location.",
+      "Developed a scikit-learn model to predict route suitability scores from user fitness level, pace trends, and terrain preferences, adapting recommendations as more activity is logged.",
+      "Architected a Redux state layer over a PostgreSQL backend for persistent profiles, route history, and preferences — bridging Next.js and FastAPI with cross-origin APIs and inference pipelines.",
+    ],
+    categories: ["AI & ML", "Web Development"],
+    tags: ["Full-stack ML", "Strava API", "Adaptive Recs"],
+    tech: ["Next.js", "TypeScript", "FastAPI", "scikit-learn", "PostgreSQL", "Redux", "Python"],
+    links: [
+      { label: "GitHub", href: "#" },
+    ],
+    gradient: "from-green-900/40 to-emerald-900/20",
   },
 
   {
@@ -150,6 +173,7 @@ export const projects: Project[] = [
       },
     ],
     gradient: "from-rose-900/40 to-pink-900/20",
+    image: "/projects/court-and-gridiron-outcome-lab.jpg",
   },
 
   {
@@ -202,7 +226,10 @@ export const projects: Project[] = [
     categories: ["Optimization", "Data"],
     tags: ["Cost Reduction", "Sensitivity Analysis"],
     tech: ["Excel Solver", "Integer Programming"],
-    links: [{ label: "Write-up", href: "#" }],
+    links: [
+      { label: "GitHub", href: "https://github.com/d-lino-kee/optimal-distribution-networks" },
+    ],
     gradient: "from-teal-900/40 to-emerald-900/20",
+    image: "/projects/distribution-optimizer.jpg",
   },
 ];

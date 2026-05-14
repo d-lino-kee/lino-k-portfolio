@@ -51,7 +51,7 @@ function DrivesSection() {
           style={{ color: "var(--fg)" }}
         >
           Impact is the first question I ask when I build anything. Before the architecture,
-          before the stack — I want to know whose life gets better and how. That instinct shows
+          and the stack, I want to know whose life gets better and how. That instinct shows
           up in FORTif.ai, which helps seniors stay safe and independent, and Awaaz, which
           gives refugees a voice-first way to learn English when traditional tools leave them
           behind. Technology should serve people and their communities, not the other way

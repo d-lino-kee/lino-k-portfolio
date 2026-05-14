@@ -16,6 +16,7 @@ const cardThemes: Record<string, { gradient: string; accent: string; pattern: st
   "FORTif.ai":                    { gradient: "linear-gradient(135deg,#064e3b 0%,#065f46 40%,#047857 100%)", accent: "#34d399", pattern: "radial" },
   "OptiTime AI":                  { gradient: "linear-gradient(135deg,#2e1065 0%,#4c1d95 45%,#6d28d9 100%)", accent: "#a78bfa", pattern: "grid" },
   "Car Recommender ML":           { gradient: "linear-gradient(135deg,#0c4a6e 0%,#075985 45%,#0284c7 100%)", accent: "#38bdf8", pattern: "dots" },
+  "StrideSense":                  { gradient: "linear-gradient(135deg,#14532d 0%,#15803d 45%,#22c55e 100%)", accent: "#4ade80", pattern: "grid" },
   "Awaaz":                        { gradient: "linear-gradient(135deg,#78350f 0%,#92400e 45%,#b45309 100%)", accent: "#fcd34d", pattern: "radial" },
   "Skill Swap Platform":          { gradient: "linear-gradient(135deg,#1e1b4b 0%,#312e81 45%,#3730a3 100%)", accent: "#818cf8", pattern: "grid" },
   "Court & Gridiron Outcome Lab": { gradient: "linear-gradient(135deg,#4c0519 0%,#881337 45%,#be123c 100%)", accent: "#fb7185", pattern: "dots" },
@@ -366,8 +367,6 @@ const projectIcons: Record<string, (accent: string) => React.ReactNode> = {
 };
 
 export default function ProjectsSection() {
-  const featured = projects.filter((p) => p.featured || p.categories.includes("AI & ML") || p.categories.includes("Web Development")).slice(0, 6);
-  const others = projects.filter((p) => !featured.includes(p));
   const [selected, setSelected] = useState<Project | null>(null);
 
   return (
@@ -405,37 +404,14 @@ export default function ProjectsSection() {
           </div>
         </FadeIn>
 
-        {/* Featured grid */}
+        {/* Projects grid */}
         <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 24 }}>
-          {featured.map((p, idx) => (
+          {projects.map((p, idx) => (
             <FadeIn key={p.title} delay={idx * 80} direction="scale">
               <ProjectCard project={p} onOpen={() => setSelected(p)} />
             </FadeIn>
           ))}
         </div>
-
-        {/* More projects */}
-        {others.length > 0 && (
-          <>
-            <FadeIn>
-              <div style={{ marginTop: 72, marginBottom: 32 }}>
-                <p style={{ fontSize: 13, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(251,191,36,0.7)" }}>
-                  More Projects
-                </p>
-                <h3 style={{ marginTop: 8, fontSize: "clamp(1.2rem,2.5vw,1.75rem)", fontWeight: 700, color: "var(--fg)" }}>
-                  Older experiments and personal builds
-                </h3>
-              </div>
-            </FadeIn>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 24 }}>
-              {others.map((p, idx) => (
-                <FadeIn key={p.title} delay={idx * 80} direction="scale">
-                  <ProjectCard project={p} onOpen={() => setSelected(p)} />
-                </FadeIn>
-              ))}
-            </div>
-          </>
-        )}
 
       </div>
 
@@ -480,31 +456,45 @@ function ProjectCard({ project: p, onOpen }: { project: Project; onOpen: () => v
     >
       {/* Thumbnail area */}
       <div style={{ position: "relative", height: 240, background: theme.gradient, overflow: "hidden" }}>
-        <PatternOverlay type={theme.pattern} />
+        {!p.image && <PatternOverlay type={theme.pattern} />}
 
-        {/* Decorative glow orb */}
-        <div style={{
-          position: "absolute", width: 160, height: 160,
-          borderRadius: "50%",
-          background: `radial-gradient(circle, ${theme.accent}33 0%, transparent 70%)`,
-          top: "50%", left: "50%", transform: "translate(-50%,-50%)",
-          pointerEvents: "none",
-        }} />
+        {/* Decorative glow orb (hidden when an image cover is set) */}
+        {!p.image && (
+          <div style={{
+            position: "absolute", width: 160, height: 160,
+            borderRadius: "50%",
+            background: `radial-gradient(circle, ${theme.accent}33 0%, transparent 70%)`,
+            top: "50%", left: "50%", transform: "translate(-50%,-50%)",
+            pointerEvents: "none",
+          }} />
+        )}
 
-        {/* Project icon */}
-        <div style={{
-          position: "absolute", inset: 0, display: "flex",
-          alignItems: "center", justifyContent: "center",
-        }}>
-          {projectIcons[p.title] ? projectIcons[p.title](theme.accent) : (
-            <span style={{
-              fontSize: 80, fontWeight: 900, color: "rgba(255,255,255,0.08)",
-              userSelect: "none", lineHeight: 1, letterSpacing: "-0.05em",
-            }}>
-              {p.title.charAt(0)}
-            </span>
-          )}
-        </div>
+        {/* Cover image OR project icon */}
+        {p.image ? (
+          <img
+            src={p.image}
+            alt={`${p.title} preview`}
+            style={{
+              position: "absolute", inset: 0,
+              width: "100%", height: "100%",
+              objectFit: "cover", objectPosition: "center top",
+            }}
+          />
+        ) : (
+          <div style={{
+            position: "absolute", inset: 0, display: "flex",
+            alignItems: "center", justifyContent: "center",
+          }}>
+            {projectIcons[p.title] ? projectIcons[p.title](theme.accent) : (
+              <span style={{
+                fontSize: 80, fontWeight: 900, color: "rgba(255,255,255,0.08)",
+                userSelect: "none", lineHeight: 1, letterSpacing: "-0.05em",
+              }}>
+                {p.title.charAt(0)}
+              </span>
+            )}
+          </div>
+        )}
 
         {/* Category tag — top left */}
         <span style={{
@@ -634,21 +624,35 @@ function ProjectModal({ project: p, onClose }: { project: Project; onClose: () =
       >
         {/* Hero banner */}
         <div style={{ position: "relative", height: 200, background: theme.gradient, overflow: "hidden" }}>
-          <PatternOverlay type={theme.pattern} />
-          <div style={{
-            position: "absolute", width: 220, height: 220,
-            borderRadius: "50%",
-            background: `radial-gradient(circle, ${theme.accent}33 0%, transparent 70%)`,
-            top: "50%", left: "50%", transform: "translate(-50%,-50%)",
-            pointerEvents: "none",
-          }} />
-          <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center" }}>
-            {projectIcons[p.title] ? projectIcons[p.title](theme.accent) : (
-              <span style={{ fontSize: 100, fontWeight: 900, color: "rgba(255,255,255,0.08)", letterSpacing: "-0.05em" }}>
-                {p.title.charAt(0)}
-              </span>
-            )}
-          </div>
+          {!p.image && <PatternOverlay type={theme.pattern} />}
+          {!p.image && (
+            <div style={{
+              position: "absolute", width: 220, height: 220,
+              borderRadius: "50%",
+              background: `radial-gradient(circle, ${theme.accent}33 0%, transparent 70%)`,
+              top: "50%", left: "50%", transform: "translate(-50%,-50%)",
+              pointerEvents: "none",
+            }} />
+          )}
+          {p.image ? (
+            <img
+              src={p.image}
+              alt={`${p.title} preview`}
+              style={{
+                position: "absolute", inset: 0,
+                width: "100%", height: "100%",
+                objectFit: "cover", objectPosition: "center top",
+              }}
+            />
+          ) : (
+            <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center" }}>
+              {projectIcons[p.title] ? projectIcons[p.title](theme.accent) : (
+                <span style={{ fontSize: 100, fontWeight: 900, color: "rgba(255,255,255,0.08)", letterSpacing: "-0.05em" }}>
+                  {p.title.charAt(0)}
+                </span>
+              )}
+            </div>
+          )}
 
           {/* Close button */}
           <button
